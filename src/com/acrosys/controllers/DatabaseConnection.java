@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.acrosys.controllers;
+
 import java.sql.*;
 /**
  *
@@ -14,7 +15,7 @@ public class DatabaseConnection {
     public static Connection getConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/student_reg", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/acrosys", "root", "");
             return conn;
         } catch (SQLException | ClassNotFoundException e){
             System.out.println(e);
