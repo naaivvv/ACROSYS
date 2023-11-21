@@ -14,10 +14,4 @@ import java.util.List;
 public interface UserInterface {
     public boolean Login(User user);
     public void saveUser(User user);
-    public void signinUser(User user);
-    public void updateUser(User user, int id);
-    public void deleteUser(String un);
-    public List<User> searchUser(String searchKey, String searchString);
-    public List<User> userList();
-    public User getUser(String un);
 }
