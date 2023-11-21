@@ -5,7 +5,6 @@
 package com.acrosys.interfaces;
 
 import com.acrosys.models.User;
-import java.util.List;
 
 /**
  *
