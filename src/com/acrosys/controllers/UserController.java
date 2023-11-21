@@ -8,6 +8,6 @@ package com.acrosys.controllers;
  *
  * @author kryle
  */
-public class UserController {
+public class UserController implements UserInterface {
     
 }

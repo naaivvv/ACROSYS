@@ -4,10 +4,13 @@
  */
 package com.acrosys.interfaces;
 
+import com.acrosys.models.User;
+
 /**
  *
  * @author kryle
  */
 public interface UserInterface {
-    
+    public boolean Login(User user);
+    public void saveUser(User user);
 }
