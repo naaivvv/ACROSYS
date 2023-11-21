@@ -25,8 +25,8 @@ public class UserController implements UserInterface {
             
             String sql = "SELECT * FROM user_tbl WHERE username = ? AND password = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
+            statement.setString(1, user.getUname());
+            statement.setString(2, user.getPwd());
             
             ResultSet result = statement.executeQuery();
             if (result.next()){
