@@ -46,10 +46,11 @@ public class UserController implements UserInterface {
         try {
             Connection conn = DatabaseConnection.getConnection();
             
-            String sql = "INSERT INTO tbl_user (username, password)" + "VALUES(?, ?)";
+            String sql = "INSERT INTO tbl_user (username, password, permission)" + "VALUES(?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, user.getUname());
             statement.setString(2, user.getPwd());
+            statement.setString(3, user.getPermission());
             
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "New user record was successfully saved.", "Save", JOptionPane.INFORMATION_MESSAGE);
