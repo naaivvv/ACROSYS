@@ -25,7 +25,7 @@ public class AttendeeController implements AttendeeInterface{
         try{
         Connection conn = DatabaseConnection.getConnection();
         
-        String sql = "INSERT INTO tbl_attendee(event_name, client_name, client_age, client_gender, control_number)" + "VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tbl_attendee(event_code, client_name, client_age, client_gender, control_number)" + "VALUES(?, ?, ?, ?, ?)";
                       PreparedStatement statement = conn.prepareStatement(sql);
                       statement.setString(1, attendee.getEvent_code());
                       statement.setString(2, attendee.getClient_name());
@@ -57,7 +57,7 @@ public class AttendeeController implements AttendeeInterface{
                       statement.setString(5, attendee.getControlno());
                       
                       statement.executeUpdate();
-                      JOptionPane.showMessageDialog(null, "Event record was successfully updated.", "Update", JOptionPane.INFORMATION_MESSAGE);
+                      JOptionPane.showMessageDialog(null, "Attendee record was successfully updated.", "Update", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Unable to update attendee record. Please see logs", "Update  Error", JOptionPane.ERROR_MESSAGE);
             
@@ -105,7 +105,7 @@ public class AttendeeController implements AttendeeInterface{
                 list.add(attendee);                  
             }          
         } catch (SQLException e) {              
-            JOptionPane.showMessageDialog(null,"Unable to get list of Events. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
+            JOptionPane.showMessageDialog(null,"Unable to get list of attendees. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
             
             System.out.println("Logs: " + e.getMessage());          
         }              
@@ -133,7 +133,7 @@ public class AttendeeController implements AttendeeInterface{
                 list.add(attendee);                  
             }          
         } catch (SQLException e) {              
-            JOptionPane.showMessageDialog(null,"Unable to get list of Events. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
+            JOptionPane.showMessageDialog(null,"Unable to get list of attendees. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
             
             System.out.println("Logs: " + e.getMessage());          
         }              
@@ -161,7 +161,7 @@ public class AttendeeController implements AttendeeInterface{
                 return attendee;
             }          
         } catch (SQLException e) {              
-            JOptionPane.showMessageDialog(null,"Unable to get list of Events. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
+            JOptionPane.showMessageDialog(null,"Unable to get list of attendees. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
             
             System.out.println("Logs: " + e.getMessage());          
         }              

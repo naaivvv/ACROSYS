@@ -5,6 +5,7 @@
 package com.acrosys.interfaces;
 
 import com.acrosys.models.Event;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,5 @@ import com.acrosys.models.Event;
  */
 public interface EventInterface {
     public Event getEvent(String event_code);
+    public List<Event> eventList();
 }
