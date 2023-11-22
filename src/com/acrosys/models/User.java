@@ -12,6 +12,7 @@ public class User {
     private int Id;
     private String uname;
     private String pwd;
+    private String permission;
 
     public int getId() {
         return Id;
@@ -35,6 +36,14 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
     }
     
     
