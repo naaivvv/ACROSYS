@@ -23,7 +23,7 @@ public class UserController implements UserInterface {
         try {
             Connection conn = DatabaseConnection.getConnection();
             
-            String sql = "SELECT * FROM user_tbl WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM tbl_user WHERE username = ? AND password = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, user.getUname());
             statement.setString(2, user.getPwd());
@@ -46,7 +46,7 @@ public class UserController implements UserInterface {
         try {
             Connection conn = DatabaseConnection.getConnection();
             
-            String sql = "INSERT INTO user_tbl(username, password)" + "VALUES(?, ?)";
+            String sql = "INSERT INTO tbl_user (username, password)" + "VALUES(?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, user.getUname());
             statement.setString(2, user.getPwd());
