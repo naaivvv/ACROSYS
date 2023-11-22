@@ -4,16 +4,19 @@
  */
 package com.acrosys.views;
 
+import com.acrosys.controllers.UserController;
+import com.acrosys.models.User;
+
 /**
  *
  * @author kryle
  */
-public class NewUser extends javax.swing.JFrame {
+public class RegForm extends javax.swing.JFrame {
 
     /**
      * Creates new form NewUser
      */
-    public NewUser() {
+    public RegForm() {
         initComponents();
     }
 
@@ -28,11 +31,11 @@ public class NewUser extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txt_SignUp_UN = new javax.swing.JTextField();
+        txt_SignUp_PWD = new javax.swing.JPasswordField();
+        btn_SignUp = new javax.swing.JButton();
+        btn_SignUp_Reset = new javax.swing.JButton();
+        btn_SignUp_Cancel = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,11 +45,26 @@ public class NewUser extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
-        jButton1.setText("Sign Up");
+        btn_SignUp.setText("Sign Up");
+        btn_SignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SignUpActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Reset");
+        btn_SignUp_Reset.setText("Reset");
+        btn_SignUp_Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SignUp_ResetActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Cancel");
+        btn_SignUp_Cancel.setText("Cancel");
+        btn_SignUp_Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SignUp_CancelActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel3.setText("Sign Up");
@@ -59,11 +77,11 @@ public class NewUser extends javax.swing.JFrame {
                 .addContainerGap(469, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btn_SignUp)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addComponent(btn_SignUp_Reset)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btn_SignUp_Cancel)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -73,8 +91,8 @@ public class NewUser extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
+                                .addComponent(txt_SignUp_UN)
+                                .addComponent(txt_SignUp_PWD, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
                         .addGap(80, 80, 80))))
         );
         layout.setVerticalGroup(
@@ -85,21 +103,50 @@ public class NewUser extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_SignUp_UN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_SignUp_PWD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btn_SignUp)
+                    .addComponent(btn_SignUp_Reset)
+                    .addComponent(btn_SignUp_Cancel))
                 .addContainerGap(137, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_SignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignUpActionPerformed
+        String un = txt_SignUp_UN.getText();
+        char[] pw = txt_SignUp_PWD.getPassword();
+        String pass = new String(pw);
+        
+        User user = new User();
+        user.setUname(un);
+        user.setPwd(pass);
+        
+        UserController userController = new UserController();
+        userController.saveUser(user);
+        
+        LoginForm pi = new LoginForm();
+        pi.setVisible(true);
+
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_SignUpActionPerformed
+
+    private void btn_SignUp_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignUp_ResetActionPerformed
+        Reset();
+    }//GEN-LAST:event_btn_SignUp_ResetActionPerformed
+
+    private void btn_SignUp_CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignUp_CancelActionPerformed
+        LoginForm pi = new LoginForm();
+        pi.setVisible(true);
+
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_SignUp_CancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,32 +165,39 @@ public class NewUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewUser().setVisible(true);
+                new RegForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btn_SignUp;
+    private javax.swing.JButton btn_SignUp_Cancel;
+    private javax.swing.JButton btn_SignUp_Reset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txt_SignUp_PWD;
+    private javax.swing.JTextField txt_SignUp_UN;
     // End of variables declaration//GEN-END:variables
+
+    private void Reset() {
+        txt_SignUp_UN.setText("");
+        txt_SignUp_PWD.setText("");
+        //isEdit = false;
+    }
 }
