@@ -8,7 +8,9 @@ import com.acrosys.interfaces.EventInterface;
 import com.acrosys.models.Event;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -83,17 +85,89 @@ public class EventController implements EventInterface{
 
     @Override
     public List<Event> searchEvent(String searchkey, String searchString) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Event> list = new ArrayList<>();              
+        try {                  
+            Connection conn = DatabaseConnection.getConnection();                  
+            String sql = "SELECT * FROM tbl_event WHERE event_name LIKE ? ORDER BY event_name";                  
+            PreparedStatement statement = conn.prepareStatement(sql);                  
+            statement.setString(1, "%" + searchString + "%");                  
+            ResultSet rs = statement.executeQuery();                    
+            
+            while (rs.next()) {                      
+                Event event = new Event();                        
+                
+                event.setId(rs.getInt("id"));                      
+                event.setControlno(rs.getString("control_number"));                      
+                event.setEventname(rs.getString("event_name"));                      
+                event.setClient_name(rs.getString("client_name"));                      
+                event.setClient_age(rs.getInt("client_age"));                      
+                event.setClient_gender(rs.getString("Gender"));
+                list.add(event);                  
+            }          
+        } catch (SQLException e) {              
+            JOptionPane.showMessageDialog(null,"Unable to get list of Events. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
+            
+            System.out.println("Logs: " + e.getMessage());          
+        }              
+        return list;
     }
 
     @Override
     public List<Event> eventList() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Event> list = new ArrayList<>();              
+        try {                  
+            Connection conn = DatabaseConnection.getConnection();                  
+            String sql = "SELECT * FROM tbl_event ORDER BY event_name";                  
+            PreparedStatement statement = conn.prepareStatement(sql);                
+            ResultSet rs = statement.executeQuery();                    
+            
+            while (rs.next()) {                      
+                Event event = new Event();                        
+                
+                event.setId(rs.getInt("id"));                      
+                event.setControlno(rs.getString("control_number"));                      
+                event.setEventname(rs.getString("event_name"));                      
+                event.setClient_name(rs.getString("client_name"));                      
+                event.setClient_age(rs.getInt("client_age"));                      
+                event.setClient_gender(rs.getString("Gender"));
+                list.add(event);                  
+            }          
+        } catch (SQLException e) {              
+            JOptionPane.showMessageDialog(null,"Unable to get list of Events. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
+            
+            System.out.println("Logs: " + e.getMessage());          
+        }              
+        return list;
     }
 
     @Override
     public Event getEvent(String controlno) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Event> list = new ArrayList<>();              
+        try {                  
+            Connection conn = DatabaseConnection.getConnection();                  
+            String sql = "SELECT * FROM tbl_event WHERE control_number = ?";                  
+            PreparedStatement statement = conn.prepareStatement(sql);                  
+            statement.setString(1, controlno);                 
+            ResultSet rs = statement.executeQuery();                    
+            
+            while (rs.next()) {                      
+                Event event = new Event();                        
+                
+                event.setId(rs.getInt("id"));                      
+                event.setControlno(rs.getString("control_number"));                      
+                event.setEventname(rs.getString("event_name"));                      
+                event.setClient_name(rs.getString("client_name"));                      
+                event.setClient_age(rs.getInt("client_age"));                      
+                event.setClient_gender(rs.getString("Gender"));
+                list.add(event); 
+                return event;
+            }          
+        } catch (SQLException e) {              
+            JOptionPane.showMessageDialog(null,"Unable to get list of Events. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
+            
+            System.out.println("Logs: " + e.getMessage());          
+        }              
+        return null;
     }
     
 }
