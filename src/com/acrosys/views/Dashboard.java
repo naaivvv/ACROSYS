@@ -55,7 +55,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(251, 133, 0));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hansa\\OneDrive\\Desktop\\acrosys\\test logo dashboard.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/test logo dashboard.png"))); // NOI18N
 
         EVENT1.setBackground(new java.awt.Color(12, 146, 148));
 
@@ -101,7 +101,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\hansa\\OneDrive\\Desktop\\acrosys\\event icon.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/event icon.png"))); // NOI18N
         jLabel3.setMinimumSize(new java.awt.Dimension(16, 16));
         jLabel3.setPreferredSize(new java.awt.Dimension(16, 16));
 
