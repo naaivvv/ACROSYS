@@ -65,21 +65,21 @@ public class RegForm extends javax.swing.JFrame {
 
         cmb_SignUp_Permission.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff", "Admin" }));
 
-        btn_SignUp.setText("Sign Up");
+        btn_SignUp.setText("SIGN UP");
         btn_SignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_SignUpActionPerformed(evt);
             }
         });
 
-        btn_SignUp_Reset.setText("Reset");
+        btn_SignUp_Reset.setText("RESET");
         btn_SignUp_Reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_SignUp_ResetActionPerformed(evt);
             }
         });
 
-        btn_SignUp_Cancel.setText("Cancel");
+        btn_SignUp_Cancel.setText("CANCEL");
         btn_SignUp_Cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_SignUp_CancelActionPerformed(evt);
@@ -184,7 +184,7 @@ public class RegForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 586, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="586" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -229,7 +229,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_SignUp">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Sign Up"/>
+                    <Property name="text" type="java.lang.String" value="SIGN UP"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SignUpActionPerformed"/>
@@ -237,7 +237,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_SignUp_Reset">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Reset"/>
+                    <Property name="text" type="java.lang.String" value="RESET"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SignUp_ResetActionPerformed"/>
@@ -245,7 +245,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btn_SignUp_Cancel">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Cancel"/>
+                    <Property name="text" type="java.lang.String" value="CANCEL"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SignUp_CancelActionPerformed"/>
