@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 04:39 AM
+-- Generation Time: Nov 22, 2023 at 09:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,16 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_attendees`
+--
+
+CREATE TABLE `tbl_attendees` (
+  `id` int(11) NOT NULL,
+  `event_code` varchar(5) NOT NULL,
+  `client_name` varchar(50) NOT NULL,
+  `client_age` int(3) NOT NULL,
+  `client_gender` varchar(6) NOT NULL,
+  `control_number` varchar(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_event`
 --
 
 CREATE TABLE `tbl_event` (
   `id` int(11) NOT NULL,
-  `event_name` varchar(150) NOT NULL,
-  `client_name` varchar(50) NOT NULL,
-  `client_age` int(3) NOT NULL,
-  `client_gender` varchar(6) NOT NULL,
-  `control_number` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `event_code` varchar(5) NOT NULL,
+  `description` varchar(300) NOT NULL,
+  `date` datetime NOT NULL,
+  `total_attendees` int(11) NOT NULL,
+  `checked_in` int(11) NOT NULL,
+  `pending` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -58,6 +77,12 @@ CREATE TABLE `tbl_user` (
 --
 
 --
+-- Indexes for table `tbl_attendees`
+--
+ALTER TABLE `tbl_attendees`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_event`
 --
 ALTER TABLE `tbl_event`
@@ -72,6 +97,12 @@ ALTER TABLE `tbl_user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `tbl_attendees`
+--
+ALTER TABLE `tbl_attendees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_event`
