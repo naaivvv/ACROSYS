@@ -79,7 +79,7 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         lblCreateAcc.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        lblCreateAcc.setText("New User? Click here.");
+        lblCreateAcc.setText("No account yet? Click here.");
         lblCreateAcc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCreateAccMouseClicked(evt);
@@ -165,7 +165,8 @@ public class LoginForm extends javax.swing.JFrame {
         user.setPwd(pass);
         UserController userController = new UserController();
     if (userController.Login(user)) {
-        JOptionPane.showMessageDialog(null, "Login Success. Welcome!",
+        JOptionPane.showMessageDialog(null
+                , "Login Success. Welcome!",
             "Login", JOptionPane.INFORMATION_MESSAGE);
             new Dashboard(user.getUname()).setVisible(true);
             this.setVisible(false);
