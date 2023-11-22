@@ -30,7 +30,7 @@ public class UserController implements UserInterface {
             
             ResultSet result = statement.executeQuery();
             if (result.next()){
-                user.setUname(result.getString("username"));
+                user.setPermission(result.getString("permission"));
                 return true;
             }
         } catch (SQLException ex) {
