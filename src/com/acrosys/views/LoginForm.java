@@ -80,6 +80,11 @@ public class LoginForm extends javax.swing.JFrame {
 
         lblCreateAcc.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         lblCreateAcc.setText("New User? Click here.");
+        lblCreateAcc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCreateAccMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel4.setText("Attendees and Crowd Syncing System");
@@ -169,6 +174,11 @@ public class LoginForm extends javax.swing.JFrame {
         "Login Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void lblCreateAccMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCreateAccMouseClicked
+        new RegForm().setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_lblCreateAccMouseClicked
 
     /**
      * @param args the command line arguments
