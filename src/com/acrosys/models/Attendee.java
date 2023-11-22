@@ -15,6 +15,7 @@ public class Attendee {
     private String client_name;
     private int client_age;
     private String client_gender;
+    private boolean checked_in;
 
     public int getId() {
         return id;
@@ -63,6 +64,14 @@ public class Attendee {
 
     public void setClient_gender(String client_gender) {
         this.client_gender = client_gender;
+    }
+
+    public boolean isChecked_in() {
+        return checked_in;
+    }
+
+    public void setChecked_in(boolean checked_in) {
+        this.checked_in = checked_in;
     }
     
     
