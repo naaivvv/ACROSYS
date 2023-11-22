@@ -47,7 +47,7 @@ public class AttendeeController implements AttendeeInterface{
         try{
         Connection conn = DatabaseConnection.getConnection();
         
-        String sql = "UPDATE tbl_attendee SET event_name = ?, client_name = ?, client_age = ?, client_gender = ? WHERE control_number = ?";
+        String sql = "UPDATE tbl_attendee SET event_code = ?, client_name = ?, client_age = ?, client_gender = ? WHERE control_number = ?";
                       PreparedStatement statement = conn.prepareStatement(sql);
                   
                       statement.setString(1, attendee.getEvent_code());
@@ -88,7 +88,7 @@ public class AttendeeController implements AttendeeInterface{
         List<Attendee> list = new ArrayList<>();              
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_attendee WHERE event_name LIKE ? ORDER BY event_name";                  
+            String sql = "SELECT * FROM tbl_attendee WHERE event_code LIKE ? ORDER BY event_name";                  
             PreparedStatement statement = conn.prepareStatement(sql);                  
             statement.setString(1, "%" + searchString + "%");                  
             ResultSet rs = statement.executeQuery();                    
@@ -98,7 +98,7 @@ public class AttendeeController implements AttendeeInterface{
                 
                 attendee.setId(rs.getInt("id"));                      
                 attendee.setControlno(rs.getString("control_number"));                      
-                attendee.setEvent_code(rs.getString("event_name"));                      
+                attendee.setEvent_code(rs.getString("event_code"));                      
                 attendee.setClient_name(rs.getString("client_name"));                      
                 attendee.setClient_age(rs.getInt("client_age"));                      
                 attendee.setClient_gender(rs.getString("Gender"));
@@ -126,7 +126,7 @@ public class AttendeeController implements AttendeeInterface{
                 
                 attendee.setId(rs.getInt("id"));                      
                 attendee.setControlno(rs.getString("control_number"));                      
-                attendee.setEvent_code(rs.getString("event_name"));                      
+                attendee.setEvent_code(rs.getString("event_code"));                      
                 attendee.setClient_name(rs.getString("client_name"));                      
                 attendee.setClient_age(rs.getInt("client_age"));                      
                 attendee.setClient_gender(rs.getString("Gender"));
@@ -154,7 +154,7 @@ public class AttendeeController implements AttendeeInterface{
                 
                 attendee.setId(rs.getInt("id"));                      
                 attendee.setControlno(rs.getString("control_number"));                      
-                attendee.setEvent_code(rs.getString("event_name"));                      
+                attendee.setEvent_code(rs.getString("event_code"));                      
                 attendee.setClient_name(rs.getString("client_name"));                      
                 attendee.setClient_age(rs.getInt("client_age"));                      
                 attendee.setClient_gender(rs.getString("Gender"));
