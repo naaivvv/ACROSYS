@@ -4,10 +4,12 @@
  */
 package com.acrosys.interfaces;
 
+import com.acrosys.models.Event;
+
 /**
  *
  * @author ALS
  */
 public interface EventInterface {
-    
+    public Event getEvent(String event_code);
 }

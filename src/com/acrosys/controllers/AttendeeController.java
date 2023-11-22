@@ -141,7 +141,7 @@ public class AttendeeController implements AttendeeInterface{
     }
 
     @Override
-    public Attendee getAttendee(String controlno) {             
+    public Attendee getAttendee(String controlno) {      
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
             String sql = "SELECT * FROM tbl_attendee WHERE control_number = ?";                  
