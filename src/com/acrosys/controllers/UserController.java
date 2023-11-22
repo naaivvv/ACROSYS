@@ -23,15 +23,14 @@ public class UserController implements UserInterface {
         try {
             Connection conn = DatabaseConnection.getConnection();
             
-            String sql = "SELECT * FROM user_tbl WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM tbl_user WHERE username = ? AND password = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
+            statement.setString(1, user.getUname());
+            statement.setString(2, user.getPwd());
             
             ResultSet result = statement.executeQuery();
             if (result.next()){
-                user.setEvent(result.getString("event"));
-                user.setUname(result.getString("username"));
+                user.setPermission(result.getString("permission"));
                 return true;
             }
         } catch (SQLException ex) {
@@ -47,12 +46,7 @@ public class UserController implements UserInterface {
         try {
             Connection conn = DatabaseConnection.getConnection();
             
-            String sql = "INSERT INTO user_tbl(username, password, event)" + "VALUES(?, ?, ?)";
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, user.getUsername());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getEvent());
-            String sql = "INSERT INTO user_tbl(username, password)" + "VALUES(?, ?)";
+            String sql = "INSERT INTO tbl_user (username, password)" + "VALUES(?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, user.getUname());
             statement.setString(2, user.getPwd());
