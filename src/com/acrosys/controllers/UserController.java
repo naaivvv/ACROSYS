@@ -31,6 +31,7 @@ public class UserController implements UserInterface {
             ResultSet result = statement.executeQuery();
             if (result.next()){
                 user.setEvent(result.getString("event"));
+                user.setUname(result.getString("username"));
                 return true;
             }
         } catch (SQLException ex) {
@@ -51,6 +52,10 @@ public class UserController implements UserInterface {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getEvent());
+            String sql = "INSERT INTO user_tbl(username, password)" + "VALUES(?, ?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, user.getUname());
+            statement.setString(2, user.getPwd());
             
             statement.executeUpdate();
             JOptionPane.showMessageDialog(null, "New user record was successfully saved.", "Save", JOptionPane.INFORMATION_MESSAGE);

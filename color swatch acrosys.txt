@@ -1,0 +1,11 @@
+Color swatch (Acrosys)
+
+Orange:
+R: 251
+G: 133
+B: 0
+
+Dark Cyan
+R: 12
+G: 146
+B: 148
