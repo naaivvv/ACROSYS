@@ -168,7 +168,7 @@ public class LoginForm extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null
                 , "Login Success. Welcome!",
             "Login", JOptionPane.INFORMATION_MESSAGE);
-            new Dashboard(user.getUname()).setVisible(true);
+            new Dashboard(user).setVisible(true);
             this.setVisible(false);
     } else {
         JOptionPane.showMessageDialog(null, "Invalid username or password!",

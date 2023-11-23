@@ -24,10 +24,22 @@ public class EventController implements EventInterface {
     @Override
     public Event getEvent(String event_code) {      
         try {                  
-            Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_event WHERE event_code = ?";                  
-            PreparedStatement statement = conn.prepareStatement(sql);                  
-            statement.setString(1, event_code);                 
+            Connection conn = DatabaseConnection.getConnection();
+            
+            String sql = "SELECT * FROM tbl_event WHERE event_code = ?";      
+            PreparedStatement statement = conn.prepareStatement(sql);                   
+            statement.setString(1, event_code); 
+            
+            /*
+            String checked = "SELECT COUNT(*) AS checked_count FROM tbl_attendees WHERE event_code = ? AND checked_in = 1";
+            PreparedStatement checkedStatement = conn.prepareStatement(checked);    
+            checkedStatement.setString(1, event_code);
+            
+            String total = "SELECT COUNT(*) AS total_count FROM tbl_attendees WHERE event_code = ?";
+            PreparedStatement totalStatement = conn.prepareStatement(total);    
+            totalStatement.setString(1, event_code);
+            */
+            
             ResultSet rs = statement.executeQuery();                    
             
             while (rs.next()) {              
