@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2023 at 07:52 AM
+-- Generation Time: Nov 23, 2023 at 10:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -45,7 +45,11 @@ CREATE TABLE `tbl_attendees` (
 
 INSERT INTO `tbl_attendees` (`id`, `event_code`, `client_name`, `client_age`, `client_gender`, `control_number`, `isChecked_in`, `created_at`, `updated_at`) VALUES
 (1, 'DEV', 'KARLRYLE', 19, 'FEMALE', 'DEV0000000001', 0, '2023-11-23 06:38:17', '2023-11-23 06:38:17'),
-(2, 'GIE', 'GEANNE', 19, 'FEMALE', 'GIE0000000002', 0, '2023-11-23 06:47:17', '2023-11-23 06:47:17');
+(2, 'GIE', 'GEANNE', 19, 'FEMALE', 'GIE0000000002', 0, '2023-11-23 06:47:17', '2023-11-23 06:47:17'),
+(3, 'GIE', 'ANGEL', 19, 'FEMALE', 'GIE0000000003', 0, '2023-11-23 08:43:14', '2023-11-23 08:43:14'),
+(4, 'DEV', 'ANGEL', 19, 'FEMALE', 'DEV0000000004', 0, '2023-11-23 08:43:38', '2023-11-23 08:43:38'),
+(5, 'DEV', 'HANS', 19, 'MALE', 'DEV0000000005', 1, '2023-11-23 08:43:52', '2023-11-23 08:47:37'),
+(6, 'DEV', 'EDWIN', 19, 'MALE', 'DEV0000000006', 0, '2023-11-23 08:44:09', '2023-11-23 08:44:09');
 
 --
 -- Triggers `tbl_attendees`
@@ -72,6 +76,12 @@ LPAD(LAST_INSERT_ID(), 10, "0"));
 	END
 $$
 DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `update_total` AFTER DELETE ON `tbl_attendees` FOR EACH ROW BEGIN
+	UPDATE tbl_event SET total_attendees = total_attendees - 1 WHERE OLD.event_code = event_code;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -89,7 +99,12 @@ CREATE TABLE `tbl_ctrln` (
 
 INSERT INTO `tbl_ctrln` (`id`) VALUES
 (1),
-(2);
+(2),
+(3),
+(4),
+(5),
+(6),
+(7);
 
 -- --------------------------------------------------------
 
@@ -105,7 +120,6 @@ CREATE TABLE `tbl_event` (
   `date` datetime NOT NULL,
   `total_attendees` int(11) NOT NULL DEFAULT 0,
   `checked_in` int(11) NOT NULL DEFAULT 0,
-  `pending` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -114,9 +128,9 @@ CREATE TABLE `tbl_event` (
 -- Dumping data for table `tbl_event`
 --
 
-INSERT INTO `tbl_event` (`id`, `name`, `event_code`, `description`, `date`, `total_attendees`, `checked_in`, `pending`, `created_at`, `updated_at`) VALUES
-(1, 'DEVFEST 2023', 'DEV', '...', '2023-11-23 07:37:43', 1, 0, 0, '2023-11-23 06:37:57', '2023-11-23 06:38:17'),
-(2, 'Birthday ni Giezhia', 'GIE', '...', '2023-11-23 07:46:13', 1, 0, 0, '2023-11-23 06:46:46', '2023-11-23 06:47:17');
+INSERT INTO `tbl_event` (`id`, `name`, `event_code`, `description`, `date`, `total_attendees`, `checked_in`, `created_at`, `updated_at`) VALUES
+(1, 'DEVFEST 2023', 'DEV', '...', '2023-11-23 07:37:43', 4, 1, '2023-11-23 06:37:57', '2023-11-23 08:47:37'),
+(2, 'Birthday ni Giezhia', 'GIE', '...', '2003-08-19 13:00:00', 2, 0, '2023-11-23 06:46:46', '2023-11-23 09:00:40');
 
 -- --------------------------------------------------------
 
@@ -138,7 +152,8 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `username`, `password`, `permission`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'password', 'Admin', '2023-11-22 23:11:21', '2023-11-23 06:32:49');
+(1, 'admin', 'password', 'Admin', '2023-11-22 23:11:21', '2023-11-23 06:32:49'),
+(2, 'angel', '12345', 'Staff', '2023-11-23 08:49:24', '2023-11-23 08:49:24');
 
 --
 -- Indexes for dumped tables
@@ -176,13 +191,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_attendees`
 --
 ALTER TABLE `tbl_attendees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_ctrln`
 --
 ALTER TABLE `tbl_ctrln`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_event`
@@ -194,7 +209,7 @@ ALTER TABLE `tbl_event`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

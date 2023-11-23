@@ -30,16 +30,6 @@ public class EventController implements EventInterface {
             PreparedStatement statement = conn.prepareStatement(sql);                   
             statement.setString(1, event_code); 
             
-            /*
-            String checked = "SELECT COUNT(*) AS checked_count FROM tbl_attendees WHERE event_code = ? AND checked_in = 1";
-            PreparedStatement checkedStatement = conn.prepareStatement(checked);    
-            checkedStatement.setString(1, event_code);
-            
-            String total = "SELECT COUNT(*) AS total_count FROM tbl_attendees WHERE event_code = ?";
-            PreparedStatement totalStatement = conn.prepareStatement(total);    
-            totalStatement.setString(1, event_code);
-            */
-            
             ResultSet rs = statement.executeQuery();                    
             
             while (rs.next()) {              
@@ -50,8 +40,9 @@ public class EventController implements EventInterface {
                 event.setDescription(rs.getString("description"));                      
                 event.setDate(rs.getTimestamp("date").toLocalDateTime());                      
                 event.setTotal_attendees(rs.getInt("total_attendees"));                      
-                event.setChecked_in(rs.getInt("checked_in"));                   
-                event.setPending(rs.getInt("pending"));
+                event.setChecked_in(rs.getInt("checked_in"));
+                int pending = rs.getInt("total_attendees") - rs.getInt("checked_in");
+                event.setPending(pending);
                 return event;
             }          
         } catch (SQLException e) {              
@@ -79,8 +70,9 @@ public class EventController implements EventInterface {
                 event.setDescription(rs.getString("description"));                      
                 event.setDate(rs.getTimestamp("date").toLocalDateTime());                      
                 event.setTotal_attendees(rs.getInt("total_attendees"));                      
-                event.setChecked_in(rs.getInt("checked_in"));                   
-                event.setPending(rs.getInt("pending"));
+                event.setChecked_in(rs.getInt("checked_in"));
+                int pending = rs.getInt("total_attendees") - rs.getInt("checked_in");
+                event.setPending(pending);
                 list.add(event);
             }          
         } catch (SQLException e) {              
