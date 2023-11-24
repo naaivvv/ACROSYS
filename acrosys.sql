@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2023 at 07:27 AM
+-- Generation Time: Nov 24, 2023 at 10:51 AM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,9 @@ CREATE TABLE `tbl_attendees` (
   `client_age` int(3) NOT NULL,
   `client_gender` varchar(6) NOT NULL,
   `control_number` varchar(20) DEFAULT NULL,
+  `qr_name` text NOT NULL,
+  `qr_path` text NOT NULL,
+  `qr_imagefile` blob NOT NULL,
   `isChecked_in` tinyint(1) NOT NULL DEFAULT 0,
   `checkIn_time` timestamp NULL DEFAULT NULL,
   `checkedOut_time` timestamp NULL DEFAULT NULL,
@@ -45,13 +48,13 @@ CREATE TABLE `tbl_attendees` (
 -- Dumping data for table `tbl_attendees`
 --
 
-INSERT INTO `tbl_attendees` (`id`, `event_code`, `client_name`, `client_age`, `client_gender`, `control_number`, `isChecked_in`, `checkIn_time`, `checkedOut_time`, `created_at`, `updated_at`) VALUES
-(1, 'DEV', 'KARLRYLE', 19, 'FEMALE', 'DEV0000000001', 0, NULL, NULL, '2023-11-23 06:38:17', '2023-11-23 06:38:17'),
-(2, 'GIE', 'GEANNE', 19, 'FEMALE', 'GIE0000000002', 0, NULL, NULL, '2023-11-23 06:47:17', '2023-11-23 06:47:17'),
-(3, 'GIE', 'ANGEL', 19, 'FEMALE', 'GIE0000000003', 0, NULL, NULL, '2023-11-23 08:43:14', '2023-11-23 08:43:14'),
-(4, 'DEV', 'ANGEL', 19, 'FEMALE', 'DEV0000000004', 0, NULL, NULL, '2023-11-23 08:43:38', '2023-11-23 08:43:38'),
-(5, 'DEV', 'HANS', 19, 'MALE', 'DEV0000000005', 0, NULL, NULL, '2023-11-23 08:43:52', '2023-11-24 04:32:13'),
-(6, 'DEV', 'EDWIN', 19, 'MALE', 'DEV0000000006', 0, NULL, NULL, '2023-11-23 08:44:09', '2023-11-23 08:44:09');
+INSERT INTO `tbl_attendees` (`id`, `event_code`, `client_name`, `client_age`, `client_gender`, `control_number`, `qr_name`, `qr_path`, `qr_imagefile`, `isChecked_in`, `checkIn_time`, `checkedOut_time`, `created_at`, `updated_at`) VALUES
+(1, 'DEV', 'KARLRYLE', 19, 'FEMALE', 'DEV0000000001', '', '', '', 0, NULL, NULL, '2023-11-23 06:38:17', '2023-11-23 06:38:17'),
+(2, 'GIE', 'GEANNE', 19, 'FEMALE', 'GIE0000000002', '', '', '', 0, NULL, NULL, '2023-11-23 06:47:17', '2023-11-23 06:47:17'),
+(3, 'GIE', 'ANGEL', 19, 'FEMALE', 'GIE0000000003', '', '', '', 0, NULL, NULL, '2023-11-23 08:43:14', '2023-11-23 08:43:14'),
+(4, 'DEV', 'ANGEL', 19, 'FEMALE', 'DEV0000000004', '', '', '', 0, NULL, NULL, '2023-11-23 08:43:38', '2023-11-23 08:43:38'),
+(5, 'DEV', 'HANS', 19, 'MALE', 'DEV0000000005', '', '', '', 0, NULL, NULL, '2023-11-23 08:43:52', '2023-11-24 04:32:13'),
+(6, 'DEV', 'EDWIN', 19, 'MALE', 'DEV0000000006', '', '', '', 0, NULL, NULL, '2023-11-23 08:44:09', '2023-11-23 08:44:09');
 
 --
 -- Triggers `tbl_attendees`
@@ -199,7 +202,7 @@ ALTER TABLE `tbl_attendees`
 -- AUTO_INCREMENT for table `tbl_ctrln`
 --
 ALTER TABLE `tbl_ctrln`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_event`
