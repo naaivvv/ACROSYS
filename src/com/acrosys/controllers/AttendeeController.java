@@ -25,7 +25,7 @@ public class AttendeeController implements AttendeeInterface{
         try{
         Connection conn = DatabaseConnection.getConnection();
         
-        String sql = "INSERT INTO tbl_attendee(event_code, client_name, client_age, client_gender, control_number)" + "VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tbl_attendees(event_code, client_name, client_age, client_gender, control_number)" + "VALUES(?, ?, ?, ?, ?)";
                       PreparedStatement statement = conn.prepareStatement(sql);
                       statement.setString(1, attendee.getEvent_code());
                       statement.setString(2, attendee.getClient_name());
@@ -47,7 +47,7 @@ public class AttendeeController implements AttendeeInterface{
         try{
         Connection conn = DatabaseConnection.getConnection();
         
-        String sql = "UPDATE tbl_attendee SET event_code = ?, client_name = ?, client_age = ?, client_gender = ? WHERE control_number = ?";
+        String sql = "UPDATE tbl_attendees SET event_code = ?, client_name = ?, client_age = ?, client_gender = ? WHERE control_number = ?";
                       PreparedStatement statement = conn.prepareStatement(sql);
                   
                       statement.setString(1, attendee.getEvent_code());
@@ -70,7 +70,7 @@ public class AttendeeController implements AttendeeInterface{
     public void deleteAttendee(String controlno) {
         try {              
             Connection conn = DatabaseConnection.getConnection();                
-            String sql = "DELETE FROM tbl_event WHERE control_number = ?";              
+            String sql = "DELETE FROM tbl_attendees WHERE control_number = ?";              
             PreparedStatement statement = conn.prepareStatement(sql);             
             statement.setString(1, controlno);                            
             
@@ -88,7 +88,7 @@ public class AttendeeController implements AttendeeInterface{
         List<Attendee> list = new ArrayList<>();              
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_attendee WHERE event_code LIKE ? ORDER BY event_name";                  
+            String sql = "SELECT * FROM tbl_attendees WHERE event_code LIKE ? ORDER BY event_name";                  
             PreparedStatement statement = conn.prepareStatement(sql);                  
             statement.setString(1, "%" + searchString + "%");                  
             ResultSet rs = statement.executeQuery();                    
@@ -101,7 +101,7 @@ public class AttendeeController implements AttendeeInterface{
                 attendee.setEvent_code(rs.getString("event_code"));                      
                 attendee.setClient_name(rs.getString("client_name"));                      
                 attendee.setClient_age(rs.getInt("client_age"));                      
-                attendee.setClient_gender(rs.getString("Gender"));
+                attendee.setClient_gender(rs.getString("client_gender"));
                 list.add(attendee);                  
             }          
         } catch (SQLException e) {              
@@ -117,7 +117,7 @@ public class AttendeeController implements AttendeeInterface{
         List<Attendee> list = new ArrayList<>();              
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_attendee ORDER BY attendee_name";                  
+            String sql = "SELECT * FROM tbl_attendees ORDER BY client_name";                  
             PreparedStatement statement = conn.prepareStatement(sql);                
             ResultSet rs = statement.executeQuery();                    
             
@@ -129,7 +129,7 @@ public class AttendeeController implements AttendeeInterface{
                 attendee.setEvent_code(rs.getString("event_code"));                      
                 attendee.setClient_name(rs.getString("client_name"));                      
                 attendee.setClient_age(rs.getInt("client_age"));                      
-                attendee.setClient_gender(rs.getString("Gender"));
+                attendee.setClient_gender(rs.getString("client_gender"));
                 list.add(attendee);                  
             }          
         } catch (SQLException e) {              
@@ -144,7 +144,7 @@ public class AttendeeController implements AttendeeInterface{
     public Attendee getAttendee(String controlno) {      
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_attendee WHERE control_number = ?";                  
+            String sql = "SELECT * FROM tbl_attendees WHERE control_number = ?";                  
             PreparedStatement statement = conn.prepareStatement(sql);                  
             statement.setString(1, controlno);                 
             ResultSet rs = statement.executeQuery();                    
@@ -157,7 +157,7 @@ public class AttendeeController implements AttendeeInterface{
                 attendee.setEvent_code(rs.getString("event_code"));                      
                 attendee.setClient_name(rs.getString("client_name"));                      
                 attendee.setClient_age(rs.getInt("client_age"));                      
-                attendee.setClient_gender(rs.getString("Gender"));
+                attendee.setClient_gender(rs.getString("client_gender"));
                 return attendee;
             }          
         } catch (SQLException e) {              
