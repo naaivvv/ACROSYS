@@ -6,6 +6,7 @@ package com.acrosys.views;
 
 import com.acrosys.controllers.AttendeeController;
 import com.acrosys.models.Attendee;
+import com.acrosys.models.User;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,13 +17,16 @@ import javax.swing.table.DefaultTableModel;
 public class AddAttendees extends javax.swing.JFrame {
     private boolean isEdit = false;
     private String attendeeCNno = null;
+    private User user = null;
     /**
      * Creates new form AddAttendees
      */
-    public AddAttendees() {
+    public AddAttendees(User user) {
         initComponents();
         LoadAttendees();
         Reset();
+        
+        this.user = user;
     }
 
     /**
@@ -82,6 +86,11 @@ public class AddAttendees extends javax.swing.JFrame {
         });
 
         jButton1.setText("CANCEL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,6 +189,11 @@ public class AddAttendees extends javax.swing.JFrame {
         Reset();
     }//GEN-LAST:event_btn_Add_ResetActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new Dashboard(user).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -210,7 +224,7 @@ public class AddAttendees extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddAttendees().setVisible(true);
+                new AddAttendees(null).setVisible(true);
             }
         });
     }
