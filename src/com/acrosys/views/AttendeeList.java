@@ -5,13 +5,27 @@
 package com.acrosys.views;
 
 import com.acrosys.controllers.AttendeeController;
+import com.acrosys.controllers.DatabaseConnection;
 import com.acrosys.models.Attendee;
-import java.text.ParseException;
+import java.awt.Image;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.image.ImageType;
 
 /**
  *
@@ -20,7 +34,10 @@ import javax.swing.table.DefaultTableModel;
 public class AttendeeList extends javax.swing.JFrame {
     private boolean isEdit = false;
     private String attendeeCNno = null;
-
+    File f = null;
+    String path = null;
+    private ImageIcon format = null;
+    
     /**
      * Creates new form ManageForm
      */
@@ -59,6 +76,7 @@ public class AttendeeList extends javax.swing.JFrame {
         cmb_Manage_SelectEvent = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_AttendeeList = new javax.swing.JTable();
+        labelImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -227,12 +245,31 @@ public class AttendeeList extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbl_AttendeeList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_AttendeeListMouseClicked(evt);
+            }
         });
         jScrollPane2.setViewportView(tbl_AttendeeList);
+        if (tbl_AttendeeList.getColumnModel().getColumnCount() > 0) {
+            tbl_AttendeeList.getColumnModel().getColumn(0).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(1).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(2).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(3).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -246,20 +283,22 @@ public class AttendeeList extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btn_Manage_Save)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_Manage_Reset))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Manage_CN)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Manage_EC, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Manage_ClientName, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_Manage_ClientAge, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btn_Manage_Save)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_Manage_Reset))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_Manage_CN)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_Manage_EC, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_Manage_ClientName, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_Manage_ClientAge, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -313,11 +352,13 @@ public class AttendeeList extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Manage_Save)
-                            .addComponent(btn_Manage_Reset)))
+                            .addComponent(btn_Manage_Reset))
+                        .addGap(18, 18, 18)
+                        .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
@@ -339,7 +380,59 @@ public class AttendeeList extends javax.swing.JFrame {
         
         AttendeeController attendController = new AttendeeController();
         if(!isEdit){
+        Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pst;
+            ResultSet rs;
+            String ctrln = null; 
+            try {
             attendController.saveAttendee(attendee);
+                pst = conn.prepareStatement("SELECT * FROM tbl_attendees WHERE client_name = ?");
+                pst.setString(1, client_name);
+                
+                rs = pst.executeQuery();
+            if (rs.next()){
+                ctrln = rs.getString("control_number");
+            }
+          } catch (Exception e) {
+                    System.out.println(e);
+        }
+            
+        ByteArrayOutputStream out = QRCode.from(ctrln)
+                            .to(ImageType.PNG).stream();
+        try{
+       String f_name = ctrln;
+       String Path_name = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\";
+       FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
+       fout.write(out.toByteArray());
+       fout.flush();
+       JOptionPane.showMessageDialog(null, "QR Code Generated",
+        "Login", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        path = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\" + ctrln + ".PNG";
+        ImageIcon ii = new ImageIcon(path);
+        Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        labelImage.setIcon(new ImageIcon(img));
+        File f = new File(path);
+        System.out.println(f.getName());
+        try {
+            InputStream is = new FileInputStream(f);
+            pst = conn.prepareStatement("INSERT INTO tbl_attendees (qr_name, qr_path, qr_imagefile) VALUES (?,?,?)");
+            pst.setString(1, f.getName());
+            pst.setString(2, path);
+            pst.setBlob(3, is);
+            
+            int inserted = pst.executeUpdate();
+            if(inserted > 0){
+                JOptionPane.showMessageDialog(null, "Image Successfully Inserted");
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }else{
             attendController.updateAttendee(attendee);
         }
@@ -380,6 +473,38 @@ public class AttendeeList extends javax.swing.JFrame {
             model.addRow(new Object[]{controlno, event_code, client_name, client_age, client_gender});
         }
     }//GEN-LAST:event_txt_Manage_SearchKeyPressed
+
+    private void tbl_AttendeeListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_AttendeeListMouseClicked
+        if(evt.getClickCount()==2){
+            int selRow = tbl_AttendeeList.getSelectedRow();
+            String controlno = tbl_AttendeeList.getValueAt(selRow, 0).toString();
+            
+            AttendeeController attendController = new AttendeeController();
+            Attendee attendee = attendController.getAttendee(controlno);
+            
+            
+            txt_Manage_CN.setEditable(false);
+            txt_Manage_CN.setText(attendee.getControlno());
+            txt_Manage_EC.setText(attendee.getEvent_code());
+            txt_Manage_ClientName.setText(attendee.getClient_name());
+            txt_Manage_ClientAge.setText(attendee.getClient_age() + "");
+            cmb_Manage_ClientGender.setSelectedItem(attendee.getClient_gender());
+
+            btn_Manage_Save.setText("UPDATE");
+            btn_Manage_Reset.setText("CANCEL");
+
+            btn_Manage_delete.setEnabled(false);
+            txt_Manage_CN.setEditable(false);
+            txt_Manage_CN.requestFocus();
+            isEdit = false;
+            
+        }
+        else{
+            int selRow = tbl_AttendeeList.getSelectedRow();
+            attendeeCNno = tbl_AttendeeList.getValueAt(selRow, 0).toString();
+            btn_Manage_delete.setEnabled(true);
+        }
+    }//GEN-LAST:event_tbl_AttendeeListMouseClicked
 
     /**
      * @param args the command line arguments
@@ -432,6 +557,7 @@ public class AttendeeList extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JTable tbl_AttendeeList;
     private javax.swing.JTextField txt_Manage_CN;
     private javax.swing.JTextField txt_Manage_ClientAge;
