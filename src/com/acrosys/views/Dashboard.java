@@ -145,6 +145,11 @@ public class Dashboard extends javax.swing.JFrame {
         jButton3.setToolTipText("");
         jButton3.setBorder(null);
         jButton3.setName("btn_manage"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jPanel4.setName("panel_total"); // NOI18N
 
@@ -1091,8 +1096,13 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btn_manageActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new AttendeeList().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btn_manageActionPerformed(java.awt.event.ActionEvent evt) { 
+        new AddAttendees().setVisible(true);
         this.setVisible(false);
     }
     
