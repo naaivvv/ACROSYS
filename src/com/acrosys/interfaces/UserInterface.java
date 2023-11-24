@@ -13,4 +13,8 @@ import com.acrosys.models.User;
 public interface UserInterface {
     public boolean Login(User user);
     public void saveUser(User user);
+    public void updateUser(User user, int id);
+    public void deleteUser(String un);
+    public User getUser(String un);
+    public int getId(String un);
 }

@@ -4,17 +4,29 @@
  */
 package com.acrosys.views;
 
+import com.acrosys.controllers.UserController;
+import com.acrosys.models.User;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kryle
  */
 public class EditUser extends javax.swing.JFrame {
+    private boolean isEdit = false;
+    private User user = null;
 
     /**
      * Creates new form EditUser
      */
-    public EditUser() {
+    public EditUser(User user) {
         initComponents();
+        this.user = user;
+        
+        txt_EditUser_UN.setText(user.getUname());
+        txt_EditUser_PWD.setText(user.getPwd());
+        cmb_Edit_Permission.setSelectedItem(user.getPermission());
+
     }
 
     /**
@@ -26,21 +38,193 @@ public class EditUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txt_EditUser_UN = new javax.swing.JTextField();
+        txt_EditUser_PWD = new javax.swing.JPasswordField();
+        cmb_Edit_Permission = new javax.swing.JComboBox<>();
+        btn_resetusup = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
+        btn_cancel = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setResizable(false);
+
+        jPanel1.setMaximumSize(new java.awt.Dimension(1920, 1080));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1920, 1080));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
+
+        jLabel1.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        jLabel1.setText("Edit User");
+
+        jLabel2.setText("Username:");
+
+        jLabel3.setText("Password:");
+
+        jLabel4.setText("Permission:");
+
+        txt_EditUser_PWD.setMaximumSize(new java.awt.Dimension(72, 22));
+
+        cmb_Edit_Permission.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff", "Admin" }));
+        cmb_Edit_Permission.setEnabled(false);
+        cmb_Edit_Permission.setMaximumSize(new java.awt.Dimension(72, 22));
+
+        btn_resetusup.setText("RESET");
+        btn_resetusup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resetusupActionPerformed(evt);
+            }
+        });
+
+        btn_update.setText("UPDATE");
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+
+        btn_delete.setText("DELETE");
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
+
+        btn_cancel.setText("CANCEL");
+        btn_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txt_EditUser_PWD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txt_EditUser_UN, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cmb_Edit_Permission, 0, 255, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btn_resetusup)
+                                    .addComponent(btn_update))
+                                .addGap(98, 98, 98)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btn_delete)
+                                    .addComponent(btn_cancel))))))
+                .addContainerGap(1482, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_EditUser_UN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txt_EditUser_PWD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cmb_Edit_Permission, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_update)
+                    .addComponent(btn_delete))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_resetusup)
+                    .addComponent(btn_cancel))
+                .addContainerGap(713, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btn_resetusupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetusupActionPerformed
+        Reset();
+    }//GEN-LAST:event_btn_resetusupActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        String un = txt_EditUser_UN.getText();
+        char[] pw = txt_EditUser_PWD.getPassword();
+        String pass = new String(pw);
+        String pm = cmb_Edit_Permission.getItemAt(cmb_Edit_Permission.getSelectedIndex());
+
+        User userr = new User();
+        userr.setUname(un);
+        userr.setPwd(pass);
+        userr.setPermission(pm);
+        
+
+        UserController userController = new UserController();
+        int id = userController.getId(user.getUname());
+        userController.updateUser(userr, id);
+
+        dispose();
+        LoginForm pi = new LoginForm();
+        pi.setVisible(true);
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if(response == JOptionPane.YES_OPTION){
+            UserController userController = new UserController();
+            userController.deleteUser(user.getUname());
+            this.user = null;
+            dispose();
+            LoginForm pi = new LoginForm();
+            pi.setVisible(true);
+        }
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
+        new Dashboard(user).setVisible(true);
+
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_cancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,11 +256,29 @@ public class EditUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditUser().setVisible(true);
+                new EditUser(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancel;
+    private javax.swing.JButton btn_delete;
+    private javax.swing.JButton btn_resetusup;
+    private javax.swing.JButton btn_update;
+    private javax.swing.JComboBox<String> cmb_Edit_Permission;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField txt_EditUser_PWD;
+    private javax.swing.JTextField txt_EditUser_UN;
     // End of variables declaration//GEN-END:variables
+
+    private void Reset() {
+        txt_EditUser_UN.setText("");
+        txt_EditUser_PWD.setText("");
+        cmb_Edit_Permission.setSelectedItem("");
+    }
 }
