@@ -263,7 +263,7 @@ public class ScannerTab extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(1920, 1080));
         jPanel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\hansa\\OneDrive\\Desktop\\acrosys\\acrosys 1080p with icon.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/acrosys 1080p with icon.png"))); // NOI18N
         jLabel2.setToolTipText("");
 
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -281,7 +281,7 @@ public class ScannerTab extends javax.swing.JFrame {
             .addGap(0, 1080, Short.MAX_VALUE)
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\hansa\\OneDrive\\Desktop\\acrosys\\CHECK IN TAB.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/CHECK IN TAB.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
