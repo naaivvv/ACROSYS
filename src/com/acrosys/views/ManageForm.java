@@ -52,13 +52,13 @@ public class ManageForm extends javax.swing.JFrame {
         cmb_Manage_ClientGender = new javax.swing.JComboBox<>();
         btn_Manage_Save = new javax.swing.JButton();
         btn_Manage_Reset = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_AttendeeList = new javax.swing.JTable();
         btn_Manage_delete = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txt_Manage_Search = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         cmb_Manage_SelectEvent = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbl_AttendeeList = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -99,9 +99,106 @@ public class ManageForm extends javax.swing.JFrame {
             }
         });
 
-        tbl_AttendeeList.setAutoCreateRowSorter(true);
+        btn_Manage_delete.setText("DELETE");
+        btn_Manage_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Manage_deleteActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Search:");
+
+        txt_Manage_Search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_Manage_SearchKeyPressed(evt);
+            }
+        });
+
+        jLabel8.setText("Select Event:");
+
+        cmb_Manage_SelectEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         tbl_AttendeeList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -128,53 +225,15 @@ public class ManageForm extends javax.swing.JFrame {
                 "Control Number", "Event Code", "Client's Name", "Client's Age", "Client's Gender"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
-        tbl_AttendeeList.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tbl_AttendeeList.setMaximumSize(new java.awt.Dimension(2147483647, 80000000));
-        tbl_AttendeeList.setPreferredSize(new java.awt.Dimension(800, 80));
-        tbl_AttendeeList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl_AttendeeListMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tbl_AttendeeList);
-        if (tbl_AttendeeList.getColumnModel().getColumnCount() > 0) {
-            tbl_AttendeeList.getColumnModel().getColumn(0).setResizable(false);
-            tbl_AttendeeList.getColumnModel().getColumn(0).setPreferredWidth(125);
-            tbl_AttendeeList.getColumnModel().getColumn(1).setResizable(false);
-            tbl_AttendeeList.getColumnModel().getColumn(1).setPreferredWidth(250);
-            tbl_AttendeeList.getColumnModel().getColumn(2).setResizable(false);
-            tbl_AttendeeList.getColumnModel().getColumn(2).setPreferredWidth(250);
-            tbl_AttendeeList.getColumnModel().getColumn(3).setResizable(false);
-            tbl_AttendeeList.getColumnModel().getColumn(4).setResizable(false);
-            tbl_AttendeeList.getColumnModel().getColumn(4).setPreferredWidth(100);
-        }
-
-        btn_Manage_delete.setText("DELETE");
-        btn_Manage_delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Manage_deleteActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Search:");
-
-        txt_Manage_Search.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_Manage_SearchKeyPressed(evt);
-            }
-        });
-
-        jLabel8.setText("Select Event:");
-
-        cmb_Manage_SelectEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jScrollPane2.setViewportView(tbl_AttendeeList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,22 +261,22 @@ public class ManageForm extends javax.swing.JFrame {
                             .addComponent(txt_Manage_ClientAge, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addGap(44, 44, 44))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_Manage_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(56, 56, 56)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmb_Manage_SelectEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(btn_Manage_delete)
-                        .addGap(53, 53, 53))))
+                        .addComponent(cmb_Manage_SelectEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addComponent(btn_Manage_delete)
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,9 +289,9 @@ public class ManageForm extends javax.swing.JFrame {
                     .addComponent(txt_Manage_Search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(cmb_Manage_SelectEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_Manage_CN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,8 +315,10 @@ public class ManageForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Manage_Save)
                             .addComponent(btn_Manage_Reset)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         pack();
@@ -303,31 +364,6 @@ public class ManageForm extends javax.swing.JFrame {
             attendeeCNno=null;
         }
     }//GEN-LAST:event_btn_Manage_deleteActionPerformed
-
-    private void tbl_AttendeeListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_AttendeeListMouseClicked
-        if(evt.getClickCount()== 2){
-            int selRow = tbl_AttendeeList.getSelectedRow();
-            String Controlno = tbl_AttendeeList.getValueAt(selRow, 0).toString();
-            AttendeeController attendController = new AttendeeController();
-            Attendee attendee = attendController.getAttendee(Controlno);
-            txt_Manage_CN.setEditable(false);
-            txt_Manage_CN.setText(attendee.getControlno());
-            txt_Manage_EC.setText(attendee.getEvent_code());
-            txt_Manage_ClientName.setText(attendee.getClient_name());
-            txt_Manage_ClientAge.setText(attendee.getClient_age()+"");
-            cmb_Manage_ClientGender.setSelectedItem(attendee.getClient_gender());
-            btn_Manage_Save.setText("UPDATE");
-            btn_Manage_Reset.setText("CANCEL");
-            isEdit = true;
-            btn_Manage_delete.setEnabled(false);
-                
-                
-        }else{
-            int selRow = tbl_AttendeeList.getSelectedRow();
-            attendeeCNno = tbl_AttendeeList.getValueAt(selRow, 0).toString();
-            btn_Manage_delete.setEnabled(true);
-        }
-    }//GEN-LAST:event_tbl_AttendeeListMouseClicked
 
     private void txt_Manage_SearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Manage_SearchKeyPressed
         AttendeeController attendController = new AttendeeController();
@@ -395,7 +431,7 @@ public class ManageForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tbl_AttendeeList;
     private javax.swing.JTextField txt_Manage_CN;
     private javax.swing.JTextField txt_Manage_ClientAge;
