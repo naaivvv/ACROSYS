@@ -17,14 +17,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author kryle
  */
-public class ManageForm extends javax.swing.JFrame {
+public class AttendeeList extends javax.swing.JFrame {
     private boolean isEdit = false;
     private String attendeeCNno = null;
 
     /**
      * Creates new form ManageForm
      */
-    public ManageForm() {
+    public AttendeeList() {
         initComponents();
         LoadAttendees();
         Reset();
@@ -61,7 +61,6 @@ public class ManageForm extends javax.swing.JFrame {
         tbl_AttendeeList = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(1820, 720));
 
@@ -399,20 +398,21 @@ public class ManageForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendeeList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageForm().setVisible(true);
+                new AttendeeList().setVisible(true);
             }
         });
     }
