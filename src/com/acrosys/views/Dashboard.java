@@ -1095,24 +1095,26 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AddAttendees(user).setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        new AttendeeList().setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btn_manageActionPerformed(java.awt.event.ActionEvent evt) { 
-        
+        new AttendeeList().setVisible(true);
+        this.setVisible(false);
     }
     
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
+        new AddAttendees(user).setVisible(true);
+        this.setVisible(false);
     }
     
     private void btn_scanActionPerformed(Event event) {
+        new ScannerTab(event.getName()).setVisible(true);
+        this.setVisible(false);
     }
     
     private void initiateEvents(){
