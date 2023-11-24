@@ -468,7 +468,7 @@ public class AttendeeList extends javax.swing.JFrame {
         btn_Manage_Reset.setText("RESET");
         
         btn_Manage_delete.setEnabled(false);
-        txt_Manage_CN.setEditable(true);
+        txt_Manage_CN.setEditable(false);
         txt_Manage_CN.requestFocus();
         isEdit = false;
     }

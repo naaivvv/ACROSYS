@@ -235,6 +235,7 @@ public class AddAttendees extends javax.swing.JFrame {
         List<Attendee> list = attendController.attendeeList();
         
         for(Attendee attendee: list){
+            String controlno = attendee.getControlno();
             String event_code = attendee.getEvent_code();
             String client_name =  attendee.getClient_name();
             int client_age = attendee.getClient_age();
