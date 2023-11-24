@@ -20,7 +20,8 @@ import javax.swing.*;
  * @author ALS
  */
 public class Dashboard extends javax.swing.JFrame {
-
+    private User user = null;
+    
     /**
      * Creates new form Dashboard
      */
@@ -29,6 +30,7 @@ public class Dashboard extends javax.swing.JFrame {
         
         initiateEvents();
         setManageButton(user);
+        this.user = user;
     }
 
     /**
@@ -1093,7 +1095,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AddAttendees().setVisible(true);
+        new AddAttendees(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
