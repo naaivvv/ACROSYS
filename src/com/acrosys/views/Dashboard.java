@@ -130,14 +130,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/add client.png"))); // NOI18N
         jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.setName("btn_add"); // NOI18N
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/scan icon.png"))); // NOI18N
         jButton2.setBorder(null);
+        jButton2.setName("btn_scan"); // NOI18N
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/settings.png"))); // NOI18N
         jButton3.setToolTipText("");
@@ -346,14 +343,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/add client.png"))); // NOI18N
         jButton6.setBorder(null);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        jButton6.setName("btn_add"); // NOI18N
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/scan icon.png"))); // NOI18N
         jButton7.setBorder(null);
+        jButton7.setName("btn_scan"); // NOI18N
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/settings.png"))); // NOI18N
         jButton8.setToolTipText("");
@@ -562,14 +556,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/add client.png"))); // NOI18N
         jButton9.setBorder(null);
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
+        jButton9.setName("btn_add"); // NOI18N
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/scan icon.png"))); // NOI18N
         jButton10.setBorder(null);
+        jButton10.setName("btn_scan"); // NOI18N
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/settings.png"))); // NOI18N
         jButton11.setToolTipText("");
@@ -778,14 +769,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/add client.png"))); // NOI18N
         jButton12.setBorder(null);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
+        jButton12.setName("btn_add"); // NOI18N
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/scan icon.png"))); // NOI18N
         jButton13.setBorder(null);
+        jButton13.setName("btn_scan"); // NOI18N
 
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/settings.png"))); // NOI18N
         jButton14.setToolTipText("");
@@ -1094,23 +1082,18 @@ public class Dashboard extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_manageActionPerformed(java.awt.event.ActionEvent evt) { 
         new ManageForm().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    }
+    
+    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
+    }
+    
+    private void btn_scanActionPerformed(Event event) {
+    }
+    
     private void initiateEvents(){
         EventController eventController = new EventController();
         List<Event> eventList = eventController.eventList();
@@ -1183,6 +1166,33 @@ public class Dashboard extends javax.swing.JFrame {
                                 }
                             }
 
+                        }
+                        
+                        // add actionPerformed event to buttons
+                        if (component1 instanceof JButton button && button.getName() != null){
+                            if(button.getName().equals("btn_manage")){
+                                button.addActionListener(new java.awt.event.ActionListener() {
+                                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        btn_manageActionPerformed(evt);
+                                    }
+                                });
+                            }
+                            
+                            if(button.getName().equals("btn_add")){
+                                button.addActionListener(new java.awt.event.ActionListener() {
+                                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        btn_addActionPerformed(evt);
+                                    }
+                                });
+                            }
+                            
+                            if(button.getName().equals("btn_scan")){
+                                button.addActionListener(new java.awt.event.ActionListener() {
+                                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        btn_scanActionPerformed(e);
+                                    }
+                                });
+                            }
                         }
                     }
                 } catch (IndexOutOfBoundsException e){

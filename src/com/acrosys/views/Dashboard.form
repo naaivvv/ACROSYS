@@ -219,10 +219,8 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_add" noResource="true"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>
@@ -232,6 +230,7 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_scan" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton3">
@@ -590,10 +589,8 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_add" noResource="true"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton7">
                   <Properties>
@@ -603,6 +600,7 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_scan" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton8">
@@ -961,10 +959,8 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_add" noResource="true"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton10">
                   <Properties>
@@ -974,6 +970,7 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_scan" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton11">
@@ -1332,10 +1329,8 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_add" noResource="true"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton13">
                   <Properties>
@@ -1345,6 +1340,7 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="null"/>
                     </Property>
+                    <Property name="name" type="java.lang.String" value="btn_scan" noResource="true"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton14">
