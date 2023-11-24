@@ -4,17 +4,30 @@
  */
 package com.acrosys.views;
 
+import com.acrosys.controllers.AttendeeController;
+import com.acrosys.models.Attendee;
+import java.text.ParseException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author kryle
  */
 public class ManageForm extends javax.swing.JFrame {
+    private boolean isEdit = false;
+    private String attendeeCNno = null;
 
     /**
      * Creates new form ManageForm
      */
     public ManageForm() {
         initComponents();
+        LoadAttendees();
+        Reset();
     }
 
     /**
@@ -30,7 +43,7 @@ public class ManageForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txt_Manage_CN = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txt_Manage_EN = new javax.swing.JTextField();
+        txt_Manage_EC = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txt_Manage_ClientName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -40,12 +53,12 @@ public class ManageForm extends javax.swing.JFrame {
         btn_Manage_Save = new javax.swing.JButton();
         btn_Manage_Reset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_EventList = new javax.swing.JTable();
-        btn_Mange_delete = new javax.swing.JButton();
+        tbl_AttendeeList = new javax.swing.JTable();
+        btn_Manage_delete = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_Manage_Search = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmb_Manage_SelectEvent = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -80,9 +93,32 @@ public class ManageForm extends javax.swing.JFrame {
         });
 
         btn_Manage_Reset.setText("RESET");
+        btn_Manage_Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Manage_ResetActionPerformed(evt);
+            }
+        });
 
-        tbl_EventList.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_AttendeeList.setAutoCreateRowSorter(true);
+        tbl_AttendeeList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -100,79 +136,100 @@ public class ManageForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_EventList.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        tbl_EventList.setPreferredSize(new java.awt.Dimension(800, 80));
-        jScrollPane1.setViewportView(tbl_EventList);
-        if (tbl_EventList.getColumnModel().getColumnCount() > 0) {
-            tbl_EventList.getColumnModel().getColumn(0).setResizable(false);
-            tbl_EventList.getColumnModel().getColumn(0).setPreferredWidth(125);
-            tbl_EventList.getColumnModel().getColumn(1).setResizable(false);
-            tbl_EventList.getColumnModel().getColumn(1).setPreferredWidth(250);
-            tbl_EventList.getColumnModel().getColumn(2).setResizable(false);
-            tbl_EventList.getColumnModel().getColumn(2).setPreferredWidth(250);
-            tbl_EventList.getColumnModel().getColumn(3).setResizable(false);
-            tbl_EventList.getColumnModel().getColumn(4).setResizable(false);
-            tbl_EventList.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tbl_AttendeeList.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbl_AttendeeList.setMaximumSize(new java.awt.Dimension(2147483647, 80000000));
+        tbl_AttendeeList.setPreferredSize(new java.awt.Dimension(800, 80));
+        tbl_AttendeeList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_AttendeeListMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbl_AttendeeList);
+        if (tbl_AttendeeList.getColumnModel().getColumnCount() > 0) {
+            tbl_AttendeeList.getColumnModel().getColumn(0).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(0).setPreferredWidth(125);
+            tbl_AttendeeList.getColumnModel().getColumn(1).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(1).setPreferredWidth(250);
+            tbl_AttendeeList.getColumnModel().getColumn(2).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(2).setPreferredWidth(250);
+            tbl_AttendeeList.getColumnModel().getColumn(3).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(4).setResizable(false);
+            tbl_AttendeeList.getColumnModel().getColumn(4).setPreferredWidth(100);
         }
 
-        btn_Mange_delete.setText("DELETE");
+        btn_Manage_delete.setText("DELETE");
+        btn_Manage_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_Manage_deleteActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Search:");
 
+        txt_Manage_Search.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_Manage_SearchKeyPressed(evt);
+            }
+        });
+
         jLabel8.setText("Select Event:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_Manage_SelectEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_Manage_Save)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_Manage_Reset))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Manage_CN)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Manage_EN, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Manage_ClientName, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_Manage_ClientAge, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_Manage_Save)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_Manage_Reset))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_CN)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_EC, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_ClientName, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_ClientAge, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Mange_delete)
-                .addGap(53, 53, 53))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(44, 44, 44))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_Manage_Search, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmb_Manage_SelectEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addComponent(btn_Manage_delete)
+                        .addGap(53, 53, 53))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(btn_Mange_delete)
+                    .addComponent(btn_Manage_delete)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Manage_Search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb_Manage_SelectEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -182,7 +239,7 @@ public class ManageForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Manage_EN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_Manage_EC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -199,16 +256,95 @@ public class ManageForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Manage_Save)
                             .addComponent(btn_Manage_Reset)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(130, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_Manage_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_SaveActionPerformed
-        // TODO add your handling code here:
+        String controlno = txt_Manage_CN.getText();
+        String event_code = txt_Manage_EC.getText();
+        String client_name = txt_Manage_ClientName.getText();
+        int client_age = Integer.parseInt(txt_Manage_ClientAge.getText());
+        String client_gender = cmb_Manage_ClientGender.getItemAt(cmb_Manage_ClientGender.getSelectedIndex());
+        
+        Attendee attendee = new Attendee(); //create an instance of Student Class
+        attendee.setControlno(controlno);
+        attendee.setEvent_code(event_code);
+        attendee.setClient_name(client_name);
+        attendee.setClient_age(client_age);
+        attendee.setClient_gender(client_gender);
+        
+        AttendeeController attendController = new AttendeeController();
+        if(!isEdit){
+            attendController.saveAttendee(attendee);
+        }else{
+            attendController.updateAttendee(attendee);
+        }
+        LoadAttendees();
+        Reset();
+        LoadAttendees();
     }//GEN-LAST:event_btn_Manage_SaveActionPerformed
+
+    private void btn_Manage_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_ResetActionPerformed
+        Reset();
+    }//GEN-LAST:event_btn_Manage_ResetActionPerformed
+
+    private void btn_Manage_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_deleteActionPerformed
+        int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this record?", "Confirm Delete", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        
+        if(response == JOptionPane.YES_OPTION){
+            AttendeeController attendController = new AttendeeController();
+            attendController.deleteAttendee(attendeeCNno);
+            LoadAttendees();
+            btn_Manage_delete.setEnabled(false);
+            attendeeCNno=null;
+        }
+    }//GEN-LAST:event_btn_Manage_deleteActionPerformed
+
+    private void tbl_AttendeeListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_AttendeeListMouseClicked
+        if(evt.getClickCount()== 2){
+            int selRow = tbl_AttendeeList.getSelectedRow();
+            String Controlno = tbl_AttendeeList.getValueAt(selRow, 0).toString();
+            AttendeeController attendController = new AttendeeController();
+            Attendee attendee = attendController.getAttendee(Controlno);
+            txt_Manage_CN.setEditable(false);
+            txt_Manage_CN.setText(attendee.getControlno());
+            txt_Manage_EC.setText(attendee.getEvent_code());
+            txt_Manage_ClientName.setText(attendee.getClient_name());
+            txt_Manage_ClientAge.setText(attendee.getClient_age()+"");
+            cmb_Manage_ClientGender.setSelectedItem(attendee.getClient_gender());
+            btn_Manage_Save.setText("UPDATE");
+            btn_Manage_Reset.setText("CANCEL");
+            isEdit = true;
+            btn_Manage_delete.setEnabled(false);
+                
+                
+        }else{
+            int selRow = tbl_AttendeeList.getSelectedRow();
+            attendeeCNno = tbl_AttendeeList.getValueAt(selRow, 0).toString();
+            btn_Manage_delete.setEnabled(true);
+        }
+    }//GEN-LAST:event_tbl_AttendeeListMouseClicked
+
+    private void txt_Manage_SearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Manage_SearchKeyPressed
+        AttendeeController attendController = new AttendeeController();
+        List<Attendee> list = attendController.searchAttendee(null, txt_Manage_Search.getText());
+        DefaultTableModel model = (DefaultTableModel) tbl_AttendeeList.getModel();
+        model.setRowCount(0);
+        
+        for(Attendee attendee: list){
+            String controlno = attendee.getControlno();
+            String event_code = attendee.getEvent_code();
+            String client_name =  attendee.getClient_name();
+            int client_age = attendee.getClient_age();
+            String client_gender = attendee.getClient_gender();
+            
+            model.addRow(new Object[]{controlno, event_code, client_name, client_age, client_gender});
+        }
+    }//GEN-LAST:event_txt_Manage_SearchKeyPressed
 
     /**
      * @param args the command line arguments
@@ -248,9 +384,9 @@ public class ManageForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Manage_Reset;
     private javax.swing.JButton btn_Manage_Save;
-    private javax.swing.JButton btn_Mange_delete;
+    private javax.swing.JButton btn_Manage_delete;
     private javax.swing.JComboBox<String> cmb_Manage_ClientGender;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmb_Manage_SelectEvent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -260,11 +396,44 @@ public class ManageForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tbl_EventList;
+    private javax.swing.JTable tbl_AttendeeList;
     private javax.swing.JTextField txt_Manage_CN;
     private javax.swing.JTextField txt_Manage_ClientAge;
     private javax.swing.JTextField txt_Manage_ClientName;
-    private javax.swing.JTextField txt_Manage_EN;
+    private javax.swing.JTextField txt_Manage_EC;
+    private javax.swing.JTextField txt_Manage_Search;
     // End of variables declaration//GEN-END:variables
+
+    private void LoadAttendees() {
+        AttendeeController attendController = new AttendeeController();
+        List<Attendee> list = attendController.attendeeList();
+        DefaultTableModel model = (DefaultTableModel) tbl_AttendeeList.getModel();
+        model.setRowCount(0);
+        
+        for(Attendee attendee: list){
+            String controlno = attendee.getControlno();
+            String event_code = attendee.getEvent_code();
+            String client_name =  attendee.getClient_name();
+            int client_age = attendee.getClient_age();
+            String client_gender = attendee.getClient_gender();
+            
+            model.addRow(new Object[]{controlno, event_code, client_name, client_age, client_gender});
+        }
+    }
+
+    private void Reset() {
+        txt_Manage_CN.setText("");
+        txt_Manage_EC.setText("");
+        txt_Manage_ClientName.setText("");
+        txt_Manage_ClientAge.setText("");
+        cmb_Manage_ClientGender.setSelectedItem("");
+                
+        btn_Manage_Save.setText("SAVE");
+        btn_Manage_Reset.setText("RESET");
+        
+        btn_Manage_delete.setEnabled(false);
+        txt_Manage_CN.setEditable(true);
+        txt_Manage_CN.requestFocus();
+        isEdit = false;
+    }
 }
