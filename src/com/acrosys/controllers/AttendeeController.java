@@ -48,11 +48,15 @@ public class AttendeeController implements AttendeeInterface{
         PreparedStatement statement = conn.prepareStatement(sql);
 
         statement.setBoolean(1, attendee.isChecked_in());
-        try {
+        if (attendee.getCheckIn_time() != null) {
             statement.setTimestamp(2, Timestamp.valueOf(attendee.getCheckIn_time()));
-            statement.setTimestamp(3, Timestamp.valueOf(attendee.getCheckOut_time()));
-        } catch (NullPointerException e) {
+        } else{
             statement.setTimestamp(2, null);
+        }
+        
+        if (attendee.getCheckOut_time() != null) {
+            statement.setTimestamp(3, Timestamp.valueOf(attendee.getCheckOut_time()));
+        } else {
             statement.setTimestamp(3, null);
         }
         statement.setString(4, attendee.getControlno());

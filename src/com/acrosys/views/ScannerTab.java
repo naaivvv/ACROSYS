@@ -300,6 +300,7 @@ public class ScannerTab extends javax.swing.JFrame {
             String currDate = DateTimeFormatter.ofPattern("hh:mm a - yyyy/MM/dd").format(date);
             
             AttendeeController atCon = new AttendeeController();
+            try {
             Attendee attendee = atCon.getAttendee(ctrlNo);
             
             if(attendee.isChecked_in()){
@@ -317,6 +318,10 @@ public class ScannerTab extends javax.swing.JFrame {
             attendee.setChecked_in(true);
             attendee.setCheckIn_time(date);
             atCon.updateAttendee(attendee);
+            
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null,"Attendee not found.","Alert", JOptionPane.ERROR_MESSAGE);
+            }
             
             txt_Code.setText("");
         }

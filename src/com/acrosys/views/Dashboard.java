@@ -1104,18 +1104,15 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btn_manageActionPerformed(java.awt.event.ActionEvent evt) { 
-        new AttendeeList().setVisible(true);
-        this.setVisible(false);
+        new ManageSelection().setVisible(true);
     }
     
     private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {                                         
         new AddAttendees(user).setVisible(true);
-        this.setVisible(false);
     }
     
     private void btn_scanActionPerformed(Event event) {
-        new ScannerTab(event.getName()).setVisible(true);
-        this.setVisible(false);
+        new ScannerSelection(event.getName()).setVisible(true);
     }
     
     private void initiateEvents(){
