@@ -6,11 +6,13 @@ package com.acrosys.views;
 
 import com.acrosys.controllers.EventController;
 import com.acrosys.models.Event;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -359,10 +361,12 @@ public class EventList extends javax.swing.JFrame {
         String event_name = txt_Manage_EN.getText();
         String event_code = txt_Manage_EC.getText();
         String description = txt_Manage_DS.getText();
-        String date = dFormat.format(dtDate.getDate());
-        String time = tFormat.format(dtTime.getText());
-        String dateTime = date + ", " + time;
-        Event event = new Event(); //create an instance of Student Class
+        String d = dFormat.format(dtDate.getDate());
+        LocalDate date = LocalDate.parse(d);
+        LocalTime time = LocalTime.parse(dtTime.getText());
+        LocalDateTime dateTime = LocalDateTime.of(date, time);
+        
+        Event event = new Event();
         event.setName(event_name);
         event.setCode(event_code);
         event.setDescription(description);
@@ -370,7 +374,7 @@ public class EventList extends javax.swing.JFrame {
         
         EventController eventController = new EventController();
         if(!isEdit){
-        eventController.saveEvent(event);
+            eventController.saveEvent(event);
         }else{
             eventController.updateEvent(event);
         }
@@ -405,7 +409,7 @@ public class EventList extends javax.swing.JFrame {
             String event_name = event.getName();
             String event_code = event.getCode();
             String description =  event.getDescription();
-            String dateTime =  event.getDate();
+            LocalDateTime dateTime =  event.getDate();
 
             
             model.addRow(new Object[]{event_name, event_code, description, dateTime});
@@ -414,6 +418,8 @@ public class EventList extends javax.swing.JFrame {
 
     private void tbl_EventListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_EventListMouseClicked
         if(evt.getClickCount()==2){
+            DateTimeFormatter dFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
             int selRow = tbl_EventList.getSelectedRow();
             String controlno = tbl_EventList.getValueAt(selRow, 0).toString();
             
@@ -424,8 +430,17 @@ public class EventList extends javax.swing.JFrame {
             txt_Manage_EN.setText(event.getName());
             txt_Manage_EC.setText(event.getCode());
             txt_Manage_DS.setText(event.getDescription());
-            dtDate.setDate(event.getDate());
-            dtTime.setDate(event.getDate());
+            LocalDateTime dateTime = event.getDate();
+            String d = dateTime.toLocalDate().format(dFormat);
+            LocalTime time = dateTime.toLocalTime();
+            
+            try {
+                dtDate.setDate(dateFormatter.parse(d));
+            } catch (ParseException ex) {
+                Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            dtTime.setText(time.toString());
 
             btn_Manage_Save.setText("UPDATE");
             btn_Manage_Reset.setText("CANCEL");
