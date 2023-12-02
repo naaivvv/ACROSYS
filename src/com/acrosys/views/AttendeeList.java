@@ -23,7 +23,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
@@ -37,6 +39,11 @@ public class AttendeeList extends javax.swing.JFrame {
     File f = null;
     String path = null;
     private ImageIcon format = null;
+    Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    DefaultTableModel dm;
+    int columnIndex = 1;
     
     /**
      * Creates new form ManageForm
@@ -46,7 +53,29 @@ public class AttendeeList extends javax.swing.JFrame {
         LoadAttendees();
         Reset();
         lblCtrlnShow.setFont(new java.awt.Font("Lucida Grande", 1, 0));
+        conn = DatabaseConnection.getConnection();
+        updateCMB();
+        CreateColumns();
     }
+    
+    private void updateCMB(){
+        String sql = "select * from tbl_event";
+        try{
+            pst = conn.prepareStatement(sql);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                cmb_Manage_SelectEvent.addItem(rs.getString("event_code"));
+            }
+            
+        }catch(Exception e){
+            
+        }
+    }
+    
+    private void CreateColumns(){
+        dm = (DefaultTableModel)tbl_AttendeeList.getModel();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -127,11 +156,6 @@ public class AttendeeList extends javax.swing.JFrame {
 
         jLabel7.setText("Search:");
 
-        txt_Manage_Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_Manage_SearchActionPerformed(evt);
-            }
-        });
         txt_Manage_Search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_Manage_SearchKeyPressed(evt);
@@ -140,7 +164,12 @@ public class AttendeeList extends javax.swing.JFrame {
 
         jLabel8.setText("Select Event:");
 
-        cmb_Manage_SelectEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_Manage_SelectEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
+        cmb_Manage_SelectEvent.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_Manage_SelectEventItemStateChanged(evt);
+            }
+        });
 
         tbl_AttendeeList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -510,10 +539,27 @@ public class AttendeeList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbl_AttendeeListMouseClicked
 
-    private void txt_Manage_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Manage_SearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_Manage_SearchActionPerformed
+    private void filter (String query, int columnIndex){
+        TableRowSorter<DefaultTableModel> tr =new TableRowSorter<> (dm);
+        tbl_AttendeeList.setRowSorter(tr);
+        
+        if (!query.equals("-")){
+            tr.setRowFilter(RowFilter.regexFilter(query, columnIndex));
+        }else{
+            tbl_AttendeeList.setRowSorter(tr);
+        }
+    }
 
+    
+    private void cmb_Manage_SelectEventItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_Manage_SelectEventItemStateChanged
+        String query = cmb_Manage_SelectEvent.getSelectedItem().toString();
+        
+        filter(query, columnIndex);
+
+    }//GEN-LAST:event_cmb_Manage_SelectEventItemStateChanged
+
+    
+    
     /**
      * @param args the command line arguments
      */
