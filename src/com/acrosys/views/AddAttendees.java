@@ -45,6 +45,7 @@ public class AddAttendees extends javax.swing.JFrame {
         LoadAttendees();
         Reset();
         lblCtrlnShow.setFont(new java.awt.Font("Lucida Grande", 1, 0));
+        labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
         
         this.user = user;
     }
@@ -257,8 +258,9 @@ public class AddAttendees extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1726, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 975, Short.MAX_VALUE))
+                .addContainerGap(969, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(713, 713, 713)
@@ -268,8 +270,9 @@ public class AddAttendees extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1384, Short.MAX_VALUE))
+                .addContainerGap(1355, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(743, 743, 743)
@@ -353,6 +356,7 @@ public class AddAttendees extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
         }
+        labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
     }//GEN-LAST:event_btn_Add_SaveActionPerformed
 
     /**

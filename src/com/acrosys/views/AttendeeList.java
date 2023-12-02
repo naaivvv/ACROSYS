@@ -56,6 +56,8 @@ public class AttendeeList extends javax.swing.JFrame {
         conn = DatabaseConnection.getConnection();
         updateCMB();
         CreateColumns();
+        labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
+
     }
     
     private void updateCMB(){
@@ -466,12 +468,14 @@ public class AttendeeList extends javax.swing.JFrame {
             int inserted = pst.executeUpdate();
             if(inserted > 0){
                 System.out.println("Image Successfully Inserted");
+                
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
         }
+        labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
     }//GEN-LAST:event_btn_Manage_SaveActionPerformed
 
     private void btn_Manage_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_ResetActionPerformed
