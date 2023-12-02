@@ -12,9 +12,8 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
+
 
 /**
  *
@@ -106,6 +105,11 @@ public class EventList extends javax.swing.JFrame {
 
         jLabel7.setText("Search:");
 
+        txt_Manage_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Manage_SearchActionPerformed(evt);
+            }
+        });
         txt_Manage_Search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_Manage_SearchKeyPressed(evt);
@@ -216,11 +220,11 @@ public class EventList extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Control Number", "Event Code", "Client's Name", "Client's Age", "Client's Gender"
+                "Event Name", "Event Code", "Description", "Date", "Time"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -437,16 +441,10 @@ public class EventList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbl_EventListMouseClicked
 
-    private void filter (String query, int columnIndex){
-        TableRowSorter<DefaultTableModel> tr =new TableRowSorter<> (dm);
-        tbl_EventList.setRowSorter(tr);
-        
-        if (!query.equals("-")){
-            tr.setRowFilter(RowFilter.regexFilter(query, columnIndex));
-        }else{
-            tbl_EventList.setRowSorter(tr);
-        }
-    }
+    private void txt_Manage_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Manage_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Manage_SearchActionPerformed
+
 
     
     
