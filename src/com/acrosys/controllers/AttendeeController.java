@@ -5,10 +5,7 @@
 package com.acrosys.controllers;
 
 import com.acrosys.models.Attendee;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -47,17 +44,21 @@ public class AttendeeController implements AttendeeInterface{
         try{
         Connection conn = DatabaseConnection.getConnection();
         
-        String sql = "UPDATE tbl_attendees SET event_code = ?, client_name = ?, client_age = ?, client_gender = ? WHERE control_number = ?";
-                      PreparedStatement statement = conn.prepareStatement(sql);
-                  
-                      statement.setString(1, attendee.getEvent_code());
-                      statement.setString(2, attendee.getClient_name());
-                      statement.setInt(3, attendee.getClient_age());
-                      statement.setString(4, attendee.getClient_gender());
-                      statement.setString(5, attendee.getControlno());
-                      
-                      statement.executeUpdate();
-                      JOptionPane.showMessageDialog(null, "Attendee record was successfully updated.", "Update", JOptionPane.INFORMATION_MESSAGE);
+        String sql = "UPDATE tbl_attendees SET isChecked_in = ?, checkIn_time = ?, checkedOut_time = ? WHERE control_number = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+
+        statement.setBoolean(1, attendee.isChecked_in());
+        try {
+            statement.setTimestamp(2, Timestamp.valueOf(attendee.getCheckIn_time()));
+            statement.setTimestamp(3, Timestamp.valueOf(attendee.getCheckOut_time()));
+        } catch (NullPointerException e) {
+            statement.setTimestamp(2, null);
+            statement.setTimestamp(3, null);
+        }
+        statement.setString(4, attendee.getControlno());
+
+        statement.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Attendee record was successfully updated.", "Update", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Unable to update attendee record. Please see logs", "Update  Error", JOptionPane.ERROR_MESSAGE);
             
@@ -158,6 +159,14 @@ public class AttendeeController implements AttendeeInterface{
                 attendee.setClient_name(rs.getString("client_name"));                      
                 attendee.setClient_age(rs.getInt("client_age"));                      
                 attendee.setClient_gender(rs.getString("client_gender"));
+                attendee.setChecked_in(rs.getBoolean("isChecked_in"));
+                try{
+                    attendee.setCheckIn_time(rs.getTimestamp("checkIn_time").toLocalDateTime());
+                    attendee.setCheckOut_time(rs.getTimestamp("checkedOut_time").toLocalDateTime());
+                } catch (NullPointerException e){
+
+                }
+                
                 return attendee;
             }          
         } catch (SQLException e) {              
