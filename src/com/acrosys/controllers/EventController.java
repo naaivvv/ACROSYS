@@ -41,7 +41,7 @@ public class EventController implements EventInterface {
                 event.setDate(rs.getTimestamp("date").toLocalDateTime());                      
                 event.setTotal_attendees(rs.getInt("total_attendees"));                      
                 event.setChecked_in(rs.getInt("checked_in"));
-                int pending = rs.getInt("total_attendees") - rs.getInt("checked_in");
+                int pending = rs.getInt("total_attendees") - (rs.getInt("checked_in") + rs.getInt("checked_out"));
                 event.setPending(pending);
                 return event;
             }          
@@ -71,7 +71,7 @@ public class EventController implements EventInterface {
                 event.setDate(rs.getTimestamp("date").toLocalDateTime());                      
                 event.setTotal_attendees(rs.getInt("total_attendees"));                      
                 event.setChecked_in(rs.getInt("checked_in"));
-                int pending = rs.getInt("total_attendees") - rs.getInt("checked_in");
+                int pending = rs.getInt("total_attendees") - (rs.getInt("checked_in") + rs.getInt("checked_out"));
                 event.setPending(pending);
                 list.add(event);
             }          
