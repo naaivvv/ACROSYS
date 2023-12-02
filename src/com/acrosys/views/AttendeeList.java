@@ -45,6 +45,7 @@ public class AttendeeList extends javax.swing.JFrame {
         initComponents();
         LoadAttendees();
         Reset();
+        lblCtrlnShow.setFont(new java.awt.Font("Lucida Grande", 1, 0));
     }
 
     /**
@@ -78,7 +79,6 @@ public class AttendeeList extends javax.swing.JFrame {
         tbl_AttendeeList = new javax.swing.JTable();
         labelImage = new javax.swing.JLabel();
         lblCtrlnShow = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -280,13 +280,6 @@ public class AttendeeList extends javax.swing.JFrame {
 
         lblCtrlnShow.setText("jLabel9");
 
-        jButton2.setText("GENERATE QR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -312,14 +305,9 @@ public class AttendeeList extends javax.swing.JFrame {
                             .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jButton2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btn_Manage_Save)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btn_Manage_Reset)))))))
+                                .addComponent(btn_Manage_Save)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_Manage_Reset)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -376,9 +364,7 @@ public class AttendeeList extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Manage_Save)
                             .addComponent(btn_Manage_Reset))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addGap(27, 27, 27)
+                        .addGap(56, 56, 56)
                         .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -414,8 +400,49 @@ public class AttendeeList extends javax.swing.JFrame {
         LoadAttendees();
         Reset();
         LoadAttendees();
-        Attendee ctrln = attendController.getControlno(client_name);
-        lblCtrlnShow.setText(ctrln.getControlno());
+        Attendee ctrlno = attendController.getControlno(client_name);
+        lblCtrlnShow.setText(ctrlno.getControlno());
+        
+        Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pst;
+            ResultSet rs;
+            String ctrln = lblCtrlnShow.getText(); 
+
+        ByteArrayOutputStream out = QRCode.from(ctrln)
+                            .to(ImageType.PNG).stream();
+        try{
+       String f_name = ctrln;
+       String Path_name = "src\\com\\acrosys\\qrcodes\\";
+       FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
+       fout.write(out.toByteArray());
+       fout.flush();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        
+        try {
+            path = "src\\com\\acrosys\\qrcodes\\" + ctrln + ".PNG";
+             ImageIcon ii = new ImageIcon(path);
+             Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+            labelImage.setIcon(new ImageIcon(img));
+            File f = new File(path);
+            System.out.println("Name: " + f.getName());
+            InputStream is = new FileInputStream(f);
+            pst = conn.prepareStatement("UPDATE tbl_attendees SET qr_name = ?, qr_path = ?, qr_imagefile = ? WHERE control_number = ?");
+            pst.setString(1, f.getName());
+            pst.setString(2, path);
+            pst.setBlob(3, is);
+            pst.setString(4, ctrln);
+            
+            int inserted = pst.executeUpdate();
+            if(inserted > 0){
+                System.out.println("Image Successfully Inserted");
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_Manage_SaveActionPerformed
 
     private void btn_Manage_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_ResetActionPerformed
@@ -487,51 +514,6 @@ public class AttendeeList extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_Manage_SearchActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement pst;
-            ResultSet rs;
-            String ctrln = lblCtrlnShow.getText(); 
-
-        ByteArrayOutputStream out = QRCode.from(ctrln)
-                            .to(ImageType.PNG).stream();
-        try{
-       String f_name = ctrln;
-       String Path_name = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\qrcodes\\";
-       FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
-       fout.write(out.toByteArray());
-       fout.flush();
-       JOptionPane.showMessageDialog(null, "QR Code Generated",
-        "Login", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e){
-            System.out.println(e);
-        }
-        
-        try {
-            path = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\qrcodes\\" + ctrln + ".PNG";
-             ImageIcon ii = new ImageIcon(path);
-             Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-            labelImage.setIcon(new ImageIcon(img));
-            File f = new File(path);
-            System.out.println("Name: " + f.getName());
-            InputStream is = new FileInputStream(f);
-            pst = conn.prepareStatement("UPDATE tbl_attendees SET qr_name = ?, qr_path = ?, qr_imagefile = ? WHERE control_number = ?");
-            pst.setString(1, f.getName());
-            pst.setString(2, path);
-            pst.setBlob(3, is);
-            pst.setString(4, ctrln);
-            
-            int inserted = pst.executeUpdate();
-            if(inserted > 0){
-                JOptionPane.showMessageDialog(null, "Image Successfully Inserted");
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -574,7 +556,6 @@ public class AttendeeList extends javax.swing.JFrame {
     private javax.swing.JButton btn_Manage_delete;
     private javax.swing.JComboBox<String> cmb_Manage_ClientGender;
     private javax.swing.JComboBox<String> cmb_Manage_SelectEvent;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
