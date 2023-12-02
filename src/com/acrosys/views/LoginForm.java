@@ -67,8 +67,6 @@ public class LoginForm extends javax.swing.JFrame {
         panel1.setName("Panel1"); // NOI18N
         panel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Downloads\\Untitled design (4).png")); // NOI18N
         panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 182, 540, 110));
 
         jButton1.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
@@ -156,7 +154,6 @@ public class LoginForm extends javax.swing.JFrame {
         panel1.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 370, 230));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Downloads\\Untitled design (2).png")); // NOI18N
         panel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Heavitas", 0, 60)); // NOI18N
@@ -201,7 +198,6 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel5.setBackground(new java.awt.Color(12, 146, 148));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Documents\\GitHub\\ACROSYS\\collaterals\\right login form.png")); // NOI18N
         panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 1470, -1));
 
         jLayeredPane2.setBackground(new java.awt.Color(12, 146, 148));
