@@ -535,7 +535,7 @@ public class EventList extends javax.swing.JFrame {
             String event_name = event.getName();
             String event_code = event.getCode();
             String description =  event.getDescription();
-            String dateTime =  event.getDate();
+            LocalDateTime dateTime =  event.getDate();
             
             model.addRow(new Object[]{event_name, event_code, description, dateTime});
         }
@@ -545,7 +545,7 @@ public class EventList extends javax.swing.JFrame {
         txt_Manage_EN.setText("");
         txt_Manage_EC.setText("");
         txt_Manage_DS.setText("");
-        dtDate.setDate("");
+        dtDate.setDate(null);
         dtTime.setText("");
                 
         btn_Manage_Save.setText("SAVE");
