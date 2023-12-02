@@ -4,6 +4,8 @@
  */
 package com.acrosys.models;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author kryle
@@ -15,7 +17,9 @@ public class Attendee {
     private String client_name;
     private int client_age;
     private String client_gender;
-    private boolean checked_in;
+    private boolean checked_in = false;
+    private LocalDateTime checkIn_time = null;
+    private LocalDateTime checkOut_time = null;
 
     public int getId() {
         return id;
@@ -72,6 +76,22 @@ public class Attendee {
 
     public void setChecked_in(boolean checked_in) {
         this.checked_in = checked_in;
+    }
+
+    public LocalDateTime getCheckIn_time() {
+        return checkIn_time;
+    }
+
+    public void setCheckIn_time(LocalDateTime checkIn_time) {
+        this.checkIn_time = checkIn_time;
+    }
+
+    public LocalDateTime getCheckOut_time() {
+        return checkOut_time;
+    }
+
+    public void setCheckOut_time(LocalDateTime checkOut_time) {
+        this.checkOut_time = checkOut_time;
     }
     
     

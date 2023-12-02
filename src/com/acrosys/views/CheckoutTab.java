@@ -15,12 +15,12 @@ import javax.swing.JOptionPane;
  *
  * @author hansa
  */
-public class ScannerTab extends javax.swing.JFrame {
+public class CheckoutTab extends javax.swing.JFrame {
 
     /**
      * Creates new form ScannerTab
      */
-    public ScannerTab(String eventName) {
+    public CheckoutTab(String eventName) {
         initComponents();
         
         txt_Code.requestFocus();
@@ -60,7 +60,6 @@ public class ScannerTab extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -76,7 +75,7 @@ public class ScannerTab extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Heavitas", 0, 60)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CHECK-IN");
+        jLabel3.setText("CHECK-OUT");
         jLayeredPane2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(968, 58, 438, 69));
 
         jLabel4.setFont(new java.awt.Font("Heavitas", 0, 30)); // NOI18N
@@ -132,7 +131,7 @@ public class ScannerTab extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Heavitas", 0, 36)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("CHECK-IN RECORDED");
+        jLabel14.setText("CHECK-OUT RECORDED");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -302,8 +301,8 @@ public class ScannerTab extends javax.swing.JFrame {
             AttendeeController atCon = new AttendeeController();
             Attendee attendee = atCon.getAttendee(ctrlNo);
             
-            if(attendee.isChecked_in()){
-                JOptionPane.showMessageDialog(null,"Attendee already checked in.","Alert", JOptionPane.ERROR_MESSAGE);
+            if(!attendee.isChecked_in()){
+                JOptionPane.showMessageDialog(null,"Attendee already checked out.","Alert", JOptionPane.INFORMATION_MESSAGE);
                 
                 txt_Code.setText("");
                 return;
@@ -314,8 +313,8 @@ public class ScannerTab extends javax.swing.JFrame {
             lbl_AttendeeGender.setText(attendee.getClient_gender());
             lbl_Time.setText(currDate);
             
-            attendee.setChecked_in(true);
-            attendee.setCheckIn_time(date);
+            attendee.setChecked_in(false);
+            attendee.setCheckOut_time(date);
             atCon.updateAttendee(attendee);
             
             txt_Code.setText("");
@@ -346,20 +345,21 @@ public class ScannerTab extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ScannerTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckoutTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ScannerTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckoutTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ScannerTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckoutTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ScannerTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CheckoutTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ScannerTab(null).setVisible(true);
+                new CheckoutTab(null).setVisible(true);
             }
         });
     }
