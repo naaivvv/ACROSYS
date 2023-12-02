@@ -77,6 +77,8 @@ public class AttendeeList extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbl_AttendeeList = new javax.swing.JTable();
         labelImage = new javax.swing.JLabel();
+        lblCtrlnShow = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -125,6 +127,11 @@ public class AttendeeList extends javax.swing.JFrame {
 
         jLabel7.setText("Search:");
 
+        txt_Manage_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_Manage_SearchActionPerformed(evt);
+            }
+        });
         txt_Manage_Search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txt_Manage_SearchKeyPressed(evt);
@@ -271,6 +278,15 @@ public class AttendeeList extends javax.swing.JFrame {
             tbl_AttendeeList.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        lblCtrlnShow.setText("jLabel9");
+
+        jButton2.setText("GENERATE QR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -284,21 +300,26 @@ public class AttendeeList extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btn_Manage_Save)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btn_Manage_Reset))
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_Manage_CN)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_Manage_EC, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_Manage_ClientName, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_Manage_ClientAge, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_CN)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_EC, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_ClientName, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_Manage_ClientAge, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_Manage_ClientGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jButton2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btn_Manage_Save)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btn_Manage_Reset)))))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -311,7 +332,9 @@ public class AttendeeList extends javax.swing.JFrame {
                         .addComponent(cmb_Manage_SelectEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(4, 4, 4)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblCtrlnShow)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(btn_Manage_delete)
                 .addGap(53, 53, 53))
@@ -349,16 +372,20 @@ public class AttendeeList extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cmb_Manage_ClientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_Manage_Save)
                             .addComponent(btn_Manage_Reset))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(27, 27, 27)
                         .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(129, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCtrlnShow)))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         pack();
@@ -380,65 +407,15 @@ public class AttendeeList extends javax.swing.JFrame {
         
         AttendeeController attendController = new AttendeeController();
         if(!isEdit){
-        Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement pst;
-            ResultSet rs;
-            String ctrln = null; 
-            try {
-            attendController.saveAttendee(attendee);
-                pst = conn.prepareStatement("SELECT * FROM tbl_attendees WHERE client_name = ?");
-                pst.setString(1, client_name);
-                
-                rs = pst.executeQuery();
-            if (rs.next()){
-                ctrln = rs.getString("control_number");
-            }
-          } catch (Exception e) {
-                    System.out.println(e);
-        }
-            
-        ByteArrayOutputStream out = QRCode.from(ctrln)
-                            .to(ImageType.PNG).stream();
-        try{
-       String f_name = ctrln;
-       String Path_name = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\";
-       FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
-       fout.write(out.toByteArray());
-       fout.flush();
-       JOptionPane.showMessageDialog(null, "QR Code Generated",
-        "Login", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception e){
-            System.out.println(e);
-        }
-
-        path = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\" + ctrln + ".PNG";
-        ImageIcon ii = new ImageIcon(path);
-        Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        labelImage.setIcon(new ImageIcon(img));
-        File f = new File(path);
-        System.out.println(f.getName());
-        try {
-            InputStream is = new FileInputStream(f);
-            pst = conn.prepareStatement("INSERT INTO tbl_attendees (qr_name, qr_path, qr_imagefile) VALUES (?,?,?)");
-            pst.setString(1, f.getName());
-            pst.setString(2, path);
-            pst.setBlob(3, is);
-            
-            int inserted = pst.executeUpdate();
-            if(inserted > 0){
-                JOptionPane.showMessageDialog(null, "Image Successfully Inserted");
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        attendController.saveAttendee(attendee);
         }else{
             attendController.updateAttendee(attendee);
         }
         LoadAttendees();
         Reset();
         LoadAttendees();
+        Attendee ctrln = attendController.getControlno(client_name);
+        lblCtrlnShow.setText(ctrln.getControlno());
     }//GEN-LAST:event_btn_Manage_SaveActionPerformed
 
     private void btn_Manage_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_ResetActionPerformed
@@ -506,6 +483,55 @@ public class AttendeeList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tbl_AttendeeListMouseClicked
 
+    private void txt_Manage_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_Manage_SearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_Manage_SearchActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            Connection conn = DatabaseConnection.getConnection();
+            PreparedStatement pst;
+            ResultSet rs;
+            String ctrln = lblCtrlnShow.getText(); 
+
+        ByteArrayOutputStream out = QRCode.from(ctrln)
+                            .to(ImageType.PNG).stream();
+        try{
+       String f_name = ctrln;
+       String Path_name = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\qrcodes\\";
+       FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
+       fout.write(out.toByteArray());
+       fout.flush();
+       JOptionPane.showMessageDialog(null, "QR Code Generated",
+        "Login", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        
+        try {
+            path = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\qrcodes\\" + ctrln + ".PNG";
+             ImageIcon ii = new ImageIcon(path);
+             Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+            labelImage.setIcon(new ImageIcon(img));
+            File f = new File(path);
+            System.out.println("Name: " + f.getName());
+            InputStream is = new FileInputStream(f);
+            pst = conn.prepareStatement("UPDATE tbl_attendees SET qr_name = ?, qr_path = ?, qr_imagefile = ? WHERE control_number = ?");
+            pst.setString(1, f.getName());
+            pst.setString(2, path);
+            pst.setBlob(3, is);
+            pst.setString(4, ctrln);
+            
+            int inserted = pst.executeUpdate();
+            if(inserted > 0){
+                JOptionPane.showMessageDialog(null, "Image Successfully Inserted");
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -548,6 +574,7 @@ public class AttendeeList extends javax.swing.JFrame {
     private javax.swing.JButton btn_Manage_delete;
     private javax.swing.JComboBox<String> cmb_Manage_ClientGender;
     private javax.swing.JComboBox<String> cmb_Manage_SelectEvent;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -558,6 +585,7 @@ public class AttendeeList extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelImage;
+    private javax.swing.JLabel lblCtrlnShow;
     private javax.swing.JTable tbl_AttendeeList;
     private javax.swing.JTextField txt_Manage_CN;
     private javax.swing.JTextField txt_Manage_ClientAge;
@@ -598,4 +626,5 @@ public class AttendeeList extends javax.swing.JFrame {
         txt_Manage_CN.requestFocus();
         isEdit = false;
     }
+
 }

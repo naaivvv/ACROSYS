@@ -167,5 +167,27 @@ public class AttendeeController implements AttendeeInterface{
         }              
         return null;
     }
+
+    @Override
+    public Attendee getControlno(String client_name) {
+        try {                  
+            Connection conn = DatabaseConnection.getConnection();                  
+            String sql = "SELECT * FROM tbl_attendees WHERE client_name = ?";                  
+            PreparedStatement statement = conn.prepareStatement(sql);                  
+            statement.setString(1, client_name);                 
+            ResultSet rs = statement.executeQuery();                    
+            
+            while (rs.next()) {                      
+                Attendee attendee = new Attendee();                                             
+                attendee.setControlno(rs.getString("control_number"));                      
+                return attendee;
+            }          
+        } catch (SQLException e) {              
+            JOptionPane.showMessageDialog(null,"Unable to get control number. Please see logs.","Save Error", JOptionPane.ERROR_MESSAGE);                            
+            
+            System.out.println("Logs: " + e.getMessage());          
+        }              
+        return null;
+    }
     
 }

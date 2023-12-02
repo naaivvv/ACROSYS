@@ -129,7 +129,7 @@
                       <Component id="btn_resetusup" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btn_cancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="713" max="32767" attributes="0"/>
+                  <EmptySpace pref="719" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

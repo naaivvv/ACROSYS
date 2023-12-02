@@ -158,7 +158,7 @@ public class EditUser extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_resetusup)
                     .addComponent(btn_cancel))
-                .addContainerGap(713, Short.MAX_VALUE))
+                .addContainerGap(719, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
