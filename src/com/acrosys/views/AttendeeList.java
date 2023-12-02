@@ -412,7 +412,7 @@ public class AttendeeList extends javax.swing.JFrame {
                             .to(ImageType.PNG).stream();
         try{
        String f_name = ctrln;
-       String Path_name = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\qrcodes\\";
+       String Path_name = "src\\com\\acrosys\\qrcodes\\";
        FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
        fout.write(out.toByteArray());
        fout.flush();
@@ -421,7 +421,7 @@ public class AttendeeList extends javax.swing.JFrame {
         }
         
         try {
-            path = "C:\\Users\\Batch 4\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\qrcodes\\" + ctrln + ".PNG";
+            path = "src\\com\\acrosys\\qrcodes\\" + ctrln + ".PNG";
              ImageIcon ii = new ImageIcon(path);
              Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
             labelImage.setIcon(new ImageIcon(img));
