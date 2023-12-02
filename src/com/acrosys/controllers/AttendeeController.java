@@ -88,7 +88,7 @@ public class AttendeeController implements AttendeeInterface{
         List<Attendee> list = new ArrayList<>();              
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_attendees WHERE event_code LIKE ? ORDER BY event_name";                  
+            String sql = "SELECT * FROM tbl_attendees WHERE client_name LIKE ? ORDER BY event_code";                  
             PreparedStatement statement = conn.prepareStatement(sql);                  
             statement.setString(1, "%" + searchString + "%");                  
             ResultSet rs = statement.executeQuery();                    
