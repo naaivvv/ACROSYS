@@ -19,9 +19,5 @@ public interface EventInterface {
     public Event getEvent(String event_code);
     public List<Event> searchEvent(String searchkey, String searchString);
     public List<Event> eventList();
-    public void saveEvent(Event event);
-    public void updateEvent(Event event);
-    public void deleteEvent(String event_code);
-    public List<Event> searchEvent(String searchkey, String searchString);
     public boolean verifyCode(String event_code);
 }
