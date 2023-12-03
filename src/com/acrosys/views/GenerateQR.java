@@ -12,6 +12,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.font.TextAttribute;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
@@ -62,6 +63,7 @@ public class GenerateQR extends javax.swing.JFrame {
         Age = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         Gender = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         Print = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,6 +91,11 @@ public class GenerateQR extends javax.swing.JFrame {
                 controlNoSearchActionPerformed(evt);
             }
         });
+        controlNoSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                controlNoSearchKeyPressed(evt);
+            }
+        });
 
         jLayeredPane2.setLayer(lblSearch, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -103,7 +110,7 @@ public class GenerateQR extends javax.swing.JFrame {
                 .addComponent(controlNoSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
@@ -146,42 +153,38 @@ public class GenerateQR extends javax.swing.JFrame {
         Control.setText("Control Number:");
 
         ControlNum.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        ControlNum.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(12, 146, 148));
         jLabel2.setText("Attendee Name:");
 
         AttendeeName.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        AttendeeName.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel5.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(12, 146, 148));
         jLabel5.setText("Event Attended:");
 
         EventAttended.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        EventAttended.setForeground(new java.awt.Color(255, 255, 255));
 
         Control1.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         Control1.setForeground(new java.awt.Color(12, 146, 148));
         Control1.setText("Event Code:");
 
         EventCode.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        EventCode.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel4.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(12, 146, 148));
         jLabel4.setText("Age:");
 
         Age.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        Age.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel6.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(12, 146, 148));
         jLabel6.setText("Gender:");
 
         Gender.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        Gender.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\soyvi\\Documents\\GitHub\\ACROSYS\\collaterals\\ORANGE.png")); // NOI18N
 
         jLayeredPane1.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(Control, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -196,30 +199,34 @@ public class GenerateQR extends javax.swing.JFrame {
         jLayeredPane1.setLayer(Age, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(Gender, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addComponent(Control)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Gender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Control1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Age, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(AttendeeName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(EventAttended, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(EventCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ControlNum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                        .addGap(57, 57, 57)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Control)
+                            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Gender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Control1, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Age, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(AttendeeName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EventAttended, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(EventCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ControlNum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6)))
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -230,7 +237,9 @@ public class GenerateQR extends javax.swing.JFrame {
                 .addComponent(jLayeredPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(Control)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ControlNum, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,27 +358,31 @@ if (ok) {
     }//GEN-LAST:event_PrintActionPerformed
 
     private void lblSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSearchMouseClicked
-        String ctrlnosearch = controlNoSearch.getText();
         
-        
-        AttendeeController attendController = new AttendeeController();
-        
-        Attendee attendee = attendController.getAttendee(ctrlnosearch);
-
-        ControlNum.setText(attendee.getControlno());
-        EventCode.setText(attendee.getEvent_code());
-        AttendeeName.setText(attendee.getClient_name());
-        Age.setText(String.valueOf(attendee.getClient_age()));
-        Gender.setText(attendee.getClient_gender());
-        
-        EventController eventController = new EventController();
-        Event event = eventController.getEvent(attendee.getEvent_code());
-        EventAttended.setText(event.getName());
     }//GEN-LAST:event_lblSearchMouseClicked
 
     private void controlNoSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_controlNoSearchActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_controlNoSearchActionPerformed
+
+    private void controlNoSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_controlNoSearchKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            String ctrlnosearch = controlNoSearch.getText();
+            
+            AttendeeController attendController = new AttendeeController();
+            Attendee attendee = attendController.getAttendee(ctrlnosearch);
+
+            ControlNum.setText(attendee.getControlno());
+            EventCode.setText(attendee.getEvent_code());
+            AttendeeName.setText(attendee.getClient_name());
+            Age.setText(String.valueOf(attendee.getClient_age()));
+            Gender.setText(attendee.getClient_gender());
+
+            EventController eventController = new EventController();
+            Event event = eventController.getEvent(attendee.getEvent_code());
+            EventAttended.setText(event.getName());
+        }
+    }//GEN-LAST:event_controlNoSearchKeyPressed
 
     /**
      * @param args the command line arguments
@@ -417,6 +430,7 @@ if (ok) {
     private javax.swing.JLabel Gender;
     private javax.swing.JButton Print;
     private javax.swing.JTextField controlNoSearch;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
