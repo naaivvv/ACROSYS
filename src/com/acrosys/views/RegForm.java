@@ -41,6 +41,13 @@ public class RegForm extends javax.swing.JFrame {
         btn_SignUp = new javax.swing.JButton();
         btn_SignUp_Reset = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -83,32 +90,28 @@ public class RegForm extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmb_SignUp_Permission, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4)
-                                .addComponent(txt_SignUp_PWD, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(338, Short.MAX_VALUE))
-                        .addComponent(txt_SignUp_UN, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createSequentialGroup()
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(98, 98, 98)
-                            .addComponent(btn_SignUp_Reset))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(74, 74, 74)
-                            .addComponent(jLabel3)))
-                    .addContainerGap(282, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 244, Short.MAX_VALUE)
                 .addComponent(btn_SignUp)
                 .addGap(206, 206, 206))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_SignUp_Permission, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(txt_SignUp_PWD, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_SignUp_UN, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(btn_SignUp_Reset))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,13 +139,52 @@ public class RegForm extends javax.swing.JFrame {
 
         panel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 330, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        jLabel5.setText("\"Welcome to ACROSYS – Revolutionizing Event Management with CrowdSync ");
-        panel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("\"Welcome to ACROSYS – Revolutionizing Event Management \n");
+        panel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 470, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("with CrowdSync Technology. We seamlessly synchronize");
+        panel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("unparalleled efficiency.\"");
+        panel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, 440, -1));
+
+        jLabel9.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("the heartbeat of events, capturing every pulse and");
+        panel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 530, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("attendee interaction. Our cutting-edge platform ");
+        panel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 560, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("transforms data into actionable insights, ");
+        panel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel12.setText(" streamlining event management for ");
+        panel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 620, 440, -1));
+
+        jLabel13.setFont(new java.awt.Font("Heavitas", 0, 30)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Elevate your events with ACROSYS");
+        panel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 760, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\user\\Documents\\GitHub\\ACROSYS\\collaterals\\acrosys 1080p with icon.png")); // NOI18N
-        panel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        panel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, 0, 1960, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,11 +265,18 @@ public class RegForm extends javax.swing.JFrame {
     private javax.swing.JButton btn_SignUp_Reset;
     private javax.swing.JComboBox<String> cmb_SignUp_Permission;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private java.awt.Panel panel2;
     private javax.swing.JPasswordField txt_SignUp_PWD;

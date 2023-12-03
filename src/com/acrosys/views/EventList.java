@@ -423,7 +423,7 @@ public class EventList extends javax.swing.JFrame {
         SimpleDateFormat tFormat = new SimpleDateFormat("hh:mm a");
         
         String event_name = txt_Manage_EN.getText();
-        String event_code = txt_Manage_EC.getText();
+        String event_code = txt_Manage_EC.getText().toUpperCase();
         String description = txt_Manage_DS.getText();
         String d = dFormat.format(dtDate.getDate());
         LocalDate date = LocalDate.parse(d);
