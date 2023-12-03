@@ -169,8 +169,8 @@ public class RegForm extends javax.swing.JFrame {
         jLabel13.setText("Elevate your events with ACROSYS");
         panel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 750, -1, -1));
 
-        jLabel14.setText("jLabel14");
-        panel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 280, 230));
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/logo 1080p revised.png"))); // NOI18N
+        panel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 410, 260));
 
         jLabel6.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
