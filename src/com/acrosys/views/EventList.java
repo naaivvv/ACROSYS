@@ -355,7 +355,7 @@ public class EventList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_Manage_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_SaveActionPerformed
-        SimpleDateFormat dFormat = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat tFormat = new SimpleDateFormat("hh:mm a");
         
         String event_name = txt_Manage_EN.getText();
@@ -363,7 +363,12 @@ public class EventList extends javax.swing.JFrame {
         String description = txt_Manage_DS.getText();
         String d = dFormat.format(dtDate.getDate());
         LocalDate date = LocalDate.parse(d);
-        LocalTime time = LocalTime.parse(dtTime.getText());
+        LocalTime time;
+        try {
+            time = LocalTime.parse(dtTime.getText(), DateTimeFormatter.ofPattern("HH:mm"));
+        } catch (java.time.format.DateTimeParseException e) {
+            time = LocalTime.parse(dtTime.getText(), DateTimeFormatter.ofPattern("H:mm"));
+        }
         LocalDateTime dateTime = LocalDateTime.of(date, time);
         
         Event event = new Event();
@@ -397,6 +402,8 @@ public class EventList extends javax.swing.JFrame {
             btn_Manage_delete.setEnabled(false);
             eventCode=null;
         }
+        
+        LoadEvents();
     }//GEN-LAST:event_btn_Manage_deleteActionPerformed
 
     private void txt_Manage_SearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_Manage_SearchKeyPressed
@@ -418,13 +425,13 @@ public class EventList extends javax.swing.JFrame {
 
     private void tbl_EventListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_EventListMouseClicked
         if(evt.getClickCount()==2){
-            DateTimeFormatter dFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            DateTimeFormatter dFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
             int selRow = tbl_EventList.getSelectedRow();
-            String controlno = tbl_EventList.getValueAt(selRow, 0).toString();
+            String evtCode = tbl_EventList.getValueAt(selRow, 1).toString();
             
             EventController eventController = new EventController();
-            Event event = eventController.getEvent(controlno);
+            Event event = eventController.getEvent(evtCode);
             
             
             txt_Manage_EN.setText(event.getName());
@@ -446,12 +453,12 @@ public class EventList extends javax.swing.JFrame {
             btn_Manage_Reset.setText("CANCEL");
 
             btn_Manage_delete.setEnabled(false);
-            isEdit = false;
+            isEdit = true;
             
         }
         else{
             int selRow = tbl_EventList.getSelectedRow();
-            eventCode = tbl_EventList.getValueAt(selRow, 0).toString();
+            eventCode = tbl_EventList.getValueAt(selRow, 1).toString();
             btn_Manage_delete.setEnabled(true);
         }
     }//GEN-LAST:event_tbl_EventListMouseClicked

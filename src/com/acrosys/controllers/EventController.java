@@ -5,7 +5,6 @@
 package com.acrosys.controllers;
 
 import com.acrosys.interfaces.EventInterface;
-import com.acrosys.models.Attendee;
 import com.acrosys.models.Event;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -89,13 +88,12 @@ public class EventController implements EventInterface {
         try{
         Connection conn = DatabaseConnection.getConnection();
         
-        String sql = "INSERT INTO tbl_event(name, event_code, description, date, time)" + "VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tbl_event(name, event_code, description, date)" + "VALUES(?, ?, ?, ?)";
                       PreparedStatement statement = conn.prepareStatement(sql);
                       statement.setString(1, event.getName());
                       statement.setString(2, event.getCode());
                       statement.setString(3, event.getDescription());
                       statement.setObject(4, event.getDate());
-                      statement.setObject(5, event.getDate());
                       
                       statement.executeUpdate();
                       JOptionPane.showMessageDialog(null, "New event record was successfully saved.", "Save", JOptionPane.INFORMATION_MESSAGE);
@@ -111,13 +109,13 @@ public class EventController implements EventInterface {
         try{
         Connection conn = DatabaseConnection.getConnection();
         
-        String sql = "UPDATE tbl_event SET name = ?, description = ?, date = ?, time = ?";
+        String sql = "UPDATE tbl_event SET name = ?, description = ?, date = ? WHERE event_code = ?";
                       PreparedStatement statement = conn.prepareStatement(sql);
                   
                       statement.setString(1, event.getName());
                       statement.setString(2, event.getDescription());
                       statement.setObject(3, event.getDate());
-                      statement.setObject(4, event.getDate());
+                      statement.setObject(4, event.getCode());
                       
                       statement.executeUpdate();
                       JOptionPane.showMessageDialog(null, "Event record was successfully updated.", "Update", JOptionPane.INFORMATION_MESSAGE);
@@ -162,8 +160,7 @@ public class EventController implements EventInterface {
                 event.setName(rs.getString("name"));                      
                 event.setCode(rs.getString("event_code"));                      
                 event.setDescription(rs.getString("description"));                      
-                event.setDate((LocalDateTime) rs.getObject("date"));                      
-                event.setDate((LocalDateTime) rs.getObject("time"));
+                event.setDate((LocalDateTime) rs.getObject("date"));
                 list.add(event);                  
             }          
         } catch (SQLException e) {              
