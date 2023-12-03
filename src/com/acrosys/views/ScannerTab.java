@@ -41,7 +41,7 @@ public class ScannerTab extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        lbl_EvtName = new javax.swing.JLabel();
+        lbl_EvtName = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -63,18 +63,22 @@ public class ScannerTab extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLayeredPane2.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lbl_EvtName.setEditable(false);
+        lbl_EvtName.setColumns(20);
         lbl_EvtName.setFont(new java.awt.Font("Heavitas", 0, 70)); // NOI18N
         lbl_EvtName.setForeground(new java.awt.Color(255, 255, 255));
-        lbl_EvtName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbl_EvtName.setText("GOOGLE DEV FEST");
-        jLayeredPane2.add(lbl_EvtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 426, 796, 179));
+        lbl_EvtName.setLineWrap(true);
+        lbl_EvtName.setRows(5);
+        lbl_EvtName.setText("Birthday ni Giezhia");
+        lbl_EvtName.setWrapStyleWord(true);
+        lbl_EvtName.setOpaque(false);
+        jLayeredPane2.add(lbl_EvtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 760, 440));
 
         jLabel3.setFont(new java.awt.Font("Heavitas", 0, 60)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -370,6 +374,9 @@ public class ScannerTab extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ScannerTab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -398,7 +405,7 @@ public class ScannerTab extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_AttendeeAge;
     private javax.swing.JLabel lbl_AttendeeGender;
     private javax.swing.JLabel lbl_AttendeeName;
-    private javax.swing.JLabel lbl_EvtName;
+    private javax.swing.JTextArea lbl_EvtName;
     private javax.swing.JLabel lbl_Time;
     private javax.swing.JTextField txt_Code;
     // End of variables declaration//GEN-END:variables

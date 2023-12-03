@@ -10,6 +10,7 @@ import com.acrosys.models.User;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Component;
 import java.awt.Container;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -2513,8 +2514,8 @@ public class Dashboard extends javax.swing.JFrame {
         this.setVisible(false);
     }
     
-    private void btn_addActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        new AddAttendees(user).setVisible(true);
+    private void btn_addActionPerformed(Event event) {                                         
+        new AddAttendees(user, event).setVisible(true);
         this.setVisible(false);
     }
     
@@ -2612,12 +2613,21 @@ public class Dashboard extends javax.swing.JFrame {
                                 button.addActionListener(new java.awt.event.ActionListener() {
                                     @Override
                                     public void actionPerformed(java.awt.event.ActionEvent evt) {
-                                        btn_addActionPerformed(evt);
+                                        btn_addActionPerformed(e);
                                     }
                                 });
                             }
                             
                             if(button.getName().equals("btn_scan")){
+                                
+                                LocalDate dateNow = LocalDate.now();
+                                LocalDate evtDate = e.getDate().toLocalDate();
+                                if (evtDate.equals(dateNow)) {
+                                    button.setEnabled(true);
+                                } else {
+                                    button.setEnabled(false);
+                                }
+                                
                                 button.addActionListener(new java.awt.event.ActionListener() {
                                     @Override
                                     public void actionPerformed(java.awt.event.ActionEvent evt) {

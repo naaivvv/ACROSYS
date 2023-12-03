@@ -6,6 +6,7 @@ package com.acrosys.views;
 
 import com.acrosys.controllers.AttendeeController;
 import com.acrosys.controllers.DatabaseConnection;
+import com.acrosys.controllers.EventController;
 import com.acrosys.models.Attendee;
 import java.awt.Image;
 import java.io.ByteArrayOutputStream;
@@ -69,7 +70,7 @@ public class AttendeeList extends javax.swing.JFrame {
                 cmb_Manage_SelectEvent.addItem(rs.getString("event_code"));
             }
             
-        }catch(Exception e){
+        } catch(Exception e){
             
         }
     }
@@ -474,67 +475,73 @@ public class AttendeeList extends javax.swing.JFrame {
         int client_age = Integer.parseInt(txt_Manage_ClientAge.getText());
         String client_gender = cmb_Manage_ClientGender.getItemAt(cmb_Manage_ClientGender.getSelectedIndex());
         
-        Attendee attendee = new Attendee(); //create an instance of Student Class
-        attendee.setControlno(controlno);
-        attendee.setEvent_code(event_code);
-        attendee.setClient_name(client_name);
-        attendee.setClient_age(client_age);
-        attendee.setClient_gender(client_gender);
+        EventController evtCon = new EventController();
         
-        AttendeeController attendController = new AttendeeController();
-        if(!isEdit){
-        attendController.saveAttendee(attendee);
-        }else{
-            attendController.updateAttendee(attendee);
-        }
-        LoadAttendees();
-        Reset();
-        LoadAttendees();
-        Attendee ctrlno = attendController.getControlno(client_name);
-        lblCtrlnShow.setText(ctrlno.getControlno());
-        
-        Connection conn = DatabaseConnection.getConnection();
+        if (!evtCon.verifyCode(event_code)){ // if verifyCode returns false, there is an existing event
+            Attendee attendee = new Attendee();
+            attendee.setControlno(controlno);
+            attendee.setEvent_code(event_code);
+            attendee.setClient_name(client_name);
+            attendee.setClient_age(client_age);
+            attendee.setClient_gender(client_gender);
+
+            AttendeeController attendController = new AttendeeController();
+            if(!isEdit){
+            attendController.saveAttendee(attendee);
+            }else{
+                attendController.updateAttendee(attendee);
+            }
+            LoadAttendees();
+            Reset();
+            LoadAttendees();
+            Attendee ctrlno = attendController.getControlno(client_name);
+            lblCtrlnShow.setText(ctrlno.getControlno());
+
+            Connection conn = DatabaseConnection.getConnection();
             PreparedStatement pst;
             ResultSet rs;
             String ctrln = lblCtrlnShow.getText(); 
 
-        ByteArrayOutputStream out = QRCode.from(ctrln)
-                            .to(ImageType.PNG).stream();
-        try{
-       String f_name = ctrln;
-       String Path_name = "src\\com\\acrosys\\qrcodes\\";
-       FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
-       fout.write(out.toByteArray());
-       fout.flush();
-        } catch (Exception e){
-            System.out.println(e);
-        }
-        
-        try {
-            path = "src\\com\\acrosys\\qrcodes\\" + ctrln + ".PNG";
-             ImageIcon ii = new ImageIcon(path);
-             Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-            labelImage.setIcon(new ImageIcon(img));
-            File f = new File(path);
-            System.out.println("Name: " + f.getName());
-            InputStream is = new FileInputStream(f);
-            pst = conn.prepareStatement("UPDATE tbl_attendees SET qr_name = ?, qr_path = ?, qr_imagefile = ? WHERE control_number = ?");
-            pst.setString(1, f.getName());
-            pst.setString(2, path);
-            pst.setBlob(3, is);
-            pst.setString(4, ctrln);
+            ByteArrayOutputStream out = QRCode.from(ctrln).to(ImageType.PNG).stream();
             
-            int inserted = pst.executeUpdate();
-            if(inserted > 0){
-                System.out.println("Image Successfully Inserted");
-                
+            try{
+                String f_name = ctrln;
+                String Path_name = "src\\com\\acrosys\\qrcodes\\";
+                FileOutputStream fout = new FileOutputStream(new File(Path_name +(f_name + ".PNG")));
+                fout.write(out.toByteArray());
+                fout.flush();
+            } catch (Exception e){
+                System.out.println(e);
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+
+            try {
+                path = "src\\com\\acrosys\\qrcodes\\" + ctrln + ".PNG";
+                ImageIcon ii = new ImageIcon(path);
+                Image img = ii.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+                labelImage.setIcon(new ImageIcon(img));
+                File f = new File(path);
+                System.out.println("Name: " + f.getName());
+                InputStream is = new FileInputStream(f);
+                pst = conn.prepareStatement("UPDATE tbl_attendees SET qr_name = ?, qr_path = ?, qr_imagefile = ? WHERE control_number = ?");
+                pst.setString(1, f.getName());
+                pst.setString(2, path);
+                pst.setBlob(3, is);
+                pst.setString(4, ctrln);
+
+                int inserted = pst.executeUpdate();
+                if(inserted > 0){
+                    System.out.println("Image Successfully Inserted");
+
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(AttendeeList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
+        } else {
+            JOptionPane.showMessageDialog(null,"Event code not found.","Alert", JOptionPane.ERROR_MESSAGE);
         }
-        labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
     }//GEN-LAST:event_btn_Manage_SaveActionPerformed
 
     private void btn_Manage_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Manage_ResetActionPerformed
@@ -584,7 +591,9 @@ public class AttendeeList extends javax.swing.JFrame {
             txt_Manage_EC.setText(attendee.getEvent_code());
             txt_Manage_ClientName.setText(attendee.getClient_name());
             txt_Manage_ClientAge.setText(attendee.getClient_age() + "");
-            cmb_Manage_ClientGender.setSelectedItem(attendee.getClient_gender());
+            String gender = attendee.getClient_gender().toLowerCase();
+            gender = gender.substring(0, 1).toUpperCase() + gender.substring(1);
+            cmb_Manage_ClientGender.setSelectedItem(gender);
 
             btn_Manage_Save.setText("UPDATE");
             btn_Manage_Reset.setText("CANCEL");

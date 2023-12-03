@@ -7,6 +7,7 @@ package com.acrosys.views;
 import com.acrosys.controllers.AttendeeController;
 import com.acrosys.controllers.DatabaseConnection;
 import com.acrosys.models.Attendee;
+import com.acrosys.models.Event;
 import com.acrosys.models.User;
 import java.awt.Image;
 import java.io.ByteArrayOutputStream;
@@ -34,16 +35,18 @@ public class AddAttendees extends javax.swing.JFrame {
     private boolean isEdit = false;
     private String attendeeCNno = null;
     private User user = null;
+    private String event_code = "";
     File f = null;
     String path = null;
     private ImageIcon format = null;
     /**
      * Creates new form AddAttendees
      */
-    public AddAttendees(User user) {
+    public AddAttendees(User user, Event event) {
         initComponents();
-        LoadAttendees();
         Reset();
+        
+        event_code = event.getCode();
         lblCtrlnShow.setFont(new java.awt.Font("Lucida Grande", 1, 0));
         labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
         
@@ -61,7 +64,6 @@ public class AddAttendees extends javax.swing.JFrame {
 
         lblCtrlnShow = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        txt_Add_EC = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txt_Add_ClientName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -71,7 +73,6 @@ public class AddAttendees extends javax.swing.JFrame {
         btn_Add_Save = new javax.swing.JButton();
         btn_Add_Reset = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         labelImage = new javax.swing.JLabel();
@@ -122,10 +123,6 @@ public class AddAttendees extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Event Code:");
-
         jLabel1.setBackground(new java.awt.Color(251, 133, 0));
         jLabel1.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,9 +163,7 @@ public class AddAttendees extends javax.swing.JFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_Add_EC)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txt_Add_ClientAge, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -193,11 +188,7 @@ public class AddAttendees extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_Add_ClientAge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmb_Add_ClientGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txt_Add_EC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btn_Add_Save)
@@ -235,11 +226,10 @@ public class AddAttendees extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_Add_ResetActionPerformed
 
     private void btn_Add_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Add_SaveActionPerformed
-        String event_code = txt_Add_EC.getText();
         String client_name = txt_Add_ClientName.getText();
         int client_age = Integer.parseInt(txt_Add_ClientAge.getText());
         String client_gender = cmb_Add_ClientGender.getItemAt(cmb_Add_ClientGender.getSelectedIndex());
-
+        
         Attendee attendee = new Attendee(); //create an instance of Student Class
         attendee.setEvent_code(event_code);
         attendee.setClient_name(client_name);
@@ -252,9 +242,8 @@ public class AddAttendees extends javax.swing.JFrame {
         }else{
             attendController.updateAttendee(attendee);
         }
-        LoadAttendees();
         Reset();
-        LoadAttendees();
+
         Attendee ctrlno = attendController.getControlno(client_name);
         lblCtrlnShow.setText(ctrlno.getControlno());
 
@@ -263,8 +252,8 @@ public class AddAttendees extends javax.swing.JFrame {
         ResultSet rs;
         String ctrln = lblCtrlnShow.getText();
 
-        ByteArrayOutputStream out = QRCode.from(ctrln)
-        .to(ImageType.PNG).stream();
+        ByteArrayOutputStream out = QRCode.from(ctrln).to(ImageType.PNG).stream();
+
         try{
             String f_name = ctrln;
             String Path_name = "src\\com\\acrosys\\qrcodes\\";
@@ -331,7 +320,7 @@ public class AddAttendees extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddAttendees(null).setVisible(true);
+                new AddAttendees(null, null).setVisible(true);
             }
         });
     }
@@ -342,7 +331,6 @@ public class AddAttendees extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_Add_ClientGender;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -352,24 +340,9 @@ public class AddAttendees extends javax.swing.JFrame {
     private javax.swing.JLabel lblCtrlnShow;
     private javax.swing.JTextField txt_Add_ClientAge;
     private javax.swing.JTextField txt_Add_ClientName;
-    private javax.swing.JTextField txt_Add_EC;
     // End of variables declaration//GEN-END:variables
 
-    private void LoadAttendees() {
-        AttendeeController attendController = new AttendeeController();
-        List<Attendee> list = attendController.attendeeList();
-        
-        for(Attendee attendee: list){
-            String controlno = attendee.getControlno();
-            String event_code = attendee.getEvent_code();
-            String client_name =  attendee.getClient_name();
-            int client_age = attendee.getClient_age();
-            String client_gender = attendee.getClient_gender();
-        }
-    }
-
     private void Reset() {
-        txt_Add_EC.setText("");
         txt_Add_ClientName.setText("");
         txt_Add_ClientAge.setText("");
         cmb_Add_ClientGender.setSelectedItem("");
