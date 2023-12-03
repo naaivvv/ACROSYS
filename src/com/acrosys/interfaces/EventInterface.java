@@ -4,7 +4,6 @@
  */
 package com.acrosys.interfaces;
 
-import com.acrosys.models.Attendee;
 import com.acrosys.models.Event;
 import java.util.List;
 
