@@ -57,16 +57,21 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         lblCreateAcc = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        panel1.setBackground(new java.awt.Color(12, 146, 148));
         panel1.setName("Panel1"); // NOI18N
         panel1.setPreferredSize(new java.awt.Dimension(1920, 1080));
         panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/Untitled design (4).png"))); // NOI18N
         panel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 182, 540, 110));
 
         jButton1.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
@@ -154,67 +159,64 @@ public class LoginForm extends javax.swing.JFrame {
         panel1.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 370, 230));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/Untitled design (2).png"))); // NOI18N
         panel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Heavitas", 0, 60)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Heavitas", 0, 70)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("WELCOME BACK!");
-        panel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 250, -1, 90));
+        panel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 290, -1, 70));
 
-        jLabel7.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("synchronization meets unparalleled simplicity.\"");
-        panel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 600, -1, 50));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText(" management – where seamless synchronization meets ");
+        panel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 640, 650, 30));
 
-        jLabel8.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("\"ACROSYS: Redefining Event Excellence through CrowdSync Innovation. ");
-        panel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 480, -1, 50));
+        jLabel8.setText("\"ACROSYS: Redefining Event Excellence through CrowdSync");
+        panel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 520, -1, 30));
 
-        jLabel9.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Elevate your occasions with effortless data management, turning \n\n");
-        panel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 510, -1, 50));
+        jLabel9.setText(" Innovation.  Elevate your occasions with effortless data \n\n");
+        panel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 550, -1, 30));
 
-        jLabel10.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("every event into a masterpiece of efficiency and insight. Welcome");
-        panel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 540, -1, 50));
+        jLabel10.setText("management, turning every event into a masterpiece of ");
+        panel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 580, -1, 30));
 
-        jLabel11.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("to a new era in event management – where seamless ");
-        panel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 570, -1, 50));
+        jLabel11.setText("efficiency and insight.  Welcome to a new era in event");
+        panel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 610, -1, 30));
 
-        lblCreateAcc.setFont(new java.awt.Font("Heavitas", 2, 12)); // NOI18N
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("unparalleled simplicity.\"");
+        panel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 680, -1, -1));
+
+        lblCreateAcc.setFont(new java.awt.Font("Heavitas", 2, 14)); // NOI18N
         lblCreateAcc.setForeground(new java.awt.Color(255, 255, 255));
-        lblCreateAcc.setText("No account yet? Click here.");
+        lblCreateAcc.setText("Click here.");
         lblCreateAcc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCreateAccMouseClicked(evt);
             }
         });
-        panel1.add(lblCreateAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 850, -1, -1));
+        panel1.add(lblCreateAcc, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 820, -1, 40));
 
-        jLabel5.setBackground(new java.awt.Color(12, 146, 148));
+        jLabel13.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("No account yet? ");
+        panel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 830, -1, 20));
+
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 1470, -1));
-
-        jLayeredPane2.setBackground(new java.awt.Color(12, 146, 148));
-        jLayeredPane2.setOpaque(true);
-
-        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
-        jLayeredPane2.setLayout(jLayeredPane2Layout);
-        jLayeredPane2Layout.setHorizontalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1920, Short.MAX_VALUE)
-        );
-        jLayeredPane2Layout.setVerticalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
-        );
-
-        panel1.add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/right login form.png"))); // NOI18N
+        panel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -297,6 +299,8 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -306,7 +310,6 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JLabel lblCreateAcc;
     private java.awt.Panel panel1;
     private javax.swing.JPasswordField txtPassword;
