@@ -61,7 +61,7 @@ public class ScannerSelection extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(12, 146, 148));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\hansa\\OneDrive\\Desktop\\acrosys\\check in smal.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/check out smal.png"))); // NOI18N
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
