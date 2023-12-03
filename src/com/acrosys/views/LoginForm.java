@@ -156,11 +156,11 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel1.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 490, 370, 230));
+        panel1.add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 370, 230));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/Untitled design (2).png"))); // NOI18N
-        panel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
+        panel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 350, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Heavitas", 0, 70)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
