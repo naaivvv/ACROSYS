@@ -189,6 +189,8 @@ private ImageIcon format = null;
 
         Gender.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\hansa\\OneDrive\\Documents\\GitHub\\ACROSYS\\src\\com\\acrosys\\collaterals\\ORANGE.png")); // NOI18N
+
         jLayeredPane1.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(Control, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(ControlNum, javax.swing.JLayeredPane.DEFAULT_LAYER);
