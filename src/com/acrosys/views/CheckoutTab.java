@@ -76,13 +76,13 @@ public class CheckoutTab extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("CHECK-OUT");
-        jLayeredPane2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(968, 58, 438, 69));
+        jLayeredPane2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 140, 438, 69));
 
         jLabel4.setFont(new java.awt.Font("Heavitas", 0, 30)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("COUNTER");
-        jLayeredPane2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1032, 133, 303, -1));
+        jLayeredPane2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 210, 303, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -208,7 +208,7 @@ public class CheckoutTab extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jLayeredPane2.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(885, 195, -1, -1));
+        jLayeredPane2.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 310, -1, -1));
 
         txt_Code.setBackground(new java.awt.Color(251, 133, 0));
         txt_Code.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,7 +218,7 @@ public class CheckoutTab extends javax.swing.JFrame {
                 txt_CodeKeyPressed(evt);
             }
         });
-        jLayeredPane2.add(txt_Code, new org.netbeans.lib.awtextra.AbsoluteConstraints(885, 636, 582, 63));
+        jLayeredPane2.add(txt_Code, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 770, 582, 63));
 
         jButton1.setBackground(new java.awt.Color(12, 146, 148));
         jButton1.setFont(new java.awt.Font("Heavitas", 0, 18)); // NOI18N
@@ -230,7 +230,7 @@ public class CheckoutTab extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jLayeredPane2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1124, 705, 114, 42));
+        jLayeredPane2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 840, 114, 42));
 
         getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 1095));
 
