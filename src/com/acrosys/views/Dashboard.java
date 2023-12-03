@@ -32,6 +32,7 @@ public class Dashboard extends javax.swing.JFrame {
         initiateEvents();
         setManageButton(user);
         this.user = user;
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -2489,6 +2490,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel3.getAccessibleContext().setAccessibleName("");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -2510,17 +2512,17 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btn_manageActionPerformed(java.awt.event.ActionEvent evt) { 
-        new ManageSelection().setVisible(true);
+        new ManageSelection(user).setVisible(true);
         this.setVisible(false);
     }
     
     private void btn_addActionPerformed(Event event) {                                         
-        new AddAttendees(user, event).setVisible(true);
+        new AddSelection(user, event).setVisible(true);
         this.setVisible(false);
     }
     
     private void btn_scanActionPerformed(Event event) {
-        new ScannerSelection(event).setVisible(true);
+        new ScannerSelection(user, event).setVisible(true);
         this.setVisible(false);
     }
     

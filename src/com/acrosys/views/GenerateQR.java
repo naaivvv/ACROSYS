@@ -8,6 +8,7 @@ import com.acrosys.controllers.AttendeeController;
 import com.acrosys.controllers.EventController;
 import com.acrosys.models.Attendee;
 import com.acrosys.models.Event;
+import com.acrosys.models.User;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -28,15 +29,19 @@ import javax.swing.ImageIcon;
  * @author kryle
  */
 public class GenerateQR extends javax.swing.JFrame {
-File f = null;
-String path = null;
-private ImageIcon format = null;
+    private User user;
+    
+    File f = null;
+    String path = null;
+    private ImageIcon format = null;
     /**
      * Creates new form GenerateQR
      */
-    public GenerateQR() {
+    public GenerateQR(User user) {
         initComponents();
         lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        this.user = user;
     }
 
     /**
@@ -49,6 +54,7 @@ private ImageIcon format = null;
     private void initComponents() {
 
         panel1 = new java.awt.Panel();
+        back_button3 = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         lblSearch = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -76,6 +82,15 @@ private ImageIcon format = null;
         panel1.setBackground(new java.awt.Color(251, 133, 0));
         panel1.setName(""); // NOI18N
         panel1.setPreferredSize(new java.awt.Dimension(810, 530));
+
+        back_button3.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
+        back_button3.setForeground(new java.awt.Color(12, 146, 148));
+        back_button3.setText("< Back");
+        back_button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_button3ActionPerformed(evt);
+            }
+        });
 
         jLayeredPane2.setBackground(new java.awt.Color(12, 146, 148));
         jLayeredPane2.setOpaque(true);
@@ -288,7 +303,9 @@ private ImageIcon format = null;
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLayeredPane2)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(back_button3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Print)
                 .addGap(32, 32, 32))
             .addGroup(panel1Layout.createSequentialGroup()
@@ -303,7 +320,9 @@ private ImageIcon format = null;
                 .addGap(18, 18, 18)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Print, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Print, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(back_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -394,6 +413,11 @@ if (ok) {
         }
     }//GEN-LAST:event_controlNoSearchKeyPressed
 
+    private void back_button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_button3ActionPerformed
+        new Dashboard(user).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_back_button3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,7 +448,7 @@ if (ok) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateQR().setVisible(true);
+                new GenerateQR(null).setVisible(true);
             }
         });
     }
@@ -439,6 +463,7 @@ if (ok) {
     private javax.swing.JLabel EventCode;
     private javax.swing.JLabel Gender;
     private javax.swing.JButton Print;
+    private javax.swing.JButton back_button3;
     private javax.swing.JTextField controlNoSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

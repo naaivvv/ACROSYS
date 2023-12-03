@@ -39,6 +39,7 @@ public class RegForm extends javax.swing.JFrame {
         cmb_SignUp_Permission = new javax.swing.JComboBox<>();
         btn_SignUp = new javax.swing.JButton();
         btn_SignUp_Reset = new javax.swing.JButton();
+        btn_SignUp_Cancel = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -102,6 +103,15 @@ public class RegForm extends javax.swing.JFrame {
             }
         });
 
+        btn_SignUp_Cancel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btn_SignUp_Cancel.setForeground(new java.awt.Color(12, 146, 148));
+        btn_SignUp_Cancel.setText("CANCEL");
+        btn_SignUp_Cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SignUp_CancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -110,15 +120,17 @@ public class RegForm extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_SignUp_Reset)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_SignUp_UN)
-                                .addComponent(jLabel2)
-                                .addComponent(txt_SignUp_PWD)
-                                .addComponent(cmb_SignUp_Permission, 0, 305, Short.MAX_VALUE))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btn_SignUp_Cancel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_SignUp_Reset))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_SignUp_UN, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_SignUp_PWD, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmb_SignUp_Permission, javax.swing.GroupLayout.Alignment.LEADING, 0, 305, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(btn_SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -140,7 +152,9 @@ public class RegForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cmb_SignUp_Permission, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_SignUp_Reset)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_SignUp_Reset)
+                    .addComponent(btn_SignUp_Cancel))
                 .addGap(26, 26, 26)
                 .addComponent(btn_SignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(145, 145, 145))
@@ -213,6 +227,7 @@ public class RegForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_SignUp_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignUp_ResetActionPerformed
@@ -238,6 +253,11 @@ public class RegForm extends javax.swing.JFrame {
 
         this.setVisible(false);
     }//GEN-LAST:event_btn_SignUpActionPerformed
+
+    private void btn_SignUp_CancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SignUp_CancelActionPerformed
+        new LoginForm().setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_btn_SignUp_CancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,6 +297,7 @@ public class RegForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_SignUp;
+    private javax.swing.JButton btn_SignUp_Cancel;
     private javax.swing.JButton btn_SignUp_Reset;
     private javax.swing.JComboBox<String> cmb_SignUp_Permission;
     private javax.swing.JLabel jLabel1;

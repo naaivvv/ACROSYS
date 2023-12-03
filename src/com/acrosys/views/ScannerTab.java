@@ -7,6 +7,7 @@ package com.acrosys.views;
 import com.acrosys.controllers.AttendeeController;
 import com.acrosys.models.Attendee;
 import com.acrosys.models.Event;
+import com.acrosys.models.User;
 import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,16 +18,18 @@ import javax.swing.JOptionPane;
  * @author hansa
  */
 public class ScannerTab extends javax.swing.JFrame {
+    private User user;
     private Event event;
     /**
      * Creates new form ScannerTab
      */
-    public ScannerTab(Event event) {
+    public ScannerTab(User user, Event event) {
         initComponents();
         
         txt_Code.requestFocus();
         lbl_EvtName.setText(event.getName());
         
+        this.user = user;
         this.event = event;
         Reset();
     }
@@ -58,6 +61,7 @@ public class ScannerTab extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txt_Code = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        back_button = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -240,6 +244,16 @@ public class ScannerTab extends javax.swing.JFrame {
         });
         jLayeredPane2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 840, 114, 42));
 
+        back_button.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
+        back_button.setForeground(new java.awt.Color(12, 146, 148));
+        back_button.setText("< Back");
+        back_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_buttonActionPerformed(evt);
+            }
+        });
+        jLayeredPane2.add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1720, 0, 90, 70));
+
         getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 1095));
 
         jPanel1.setBackground(new java.awt.Color(12, 146, 148));
@@ -293,6 +307,7 @@ public class ScannerTab extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -341,6 +356,11 @@ public class ScannerTab extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_CodeKeyPressed
 
+    private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
+        new Dashboard(user).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_back_buttonActionPerformed
+
     private void Reset(){
         lbl_AttendeeName.setText("");
         lbl_AttendeeAge.setText("");
@@ -381,12 +401,13 @@ public class ScannerTab extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ScannerTab(null).setVisible(true);
+                new ScannerTab(null, null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;

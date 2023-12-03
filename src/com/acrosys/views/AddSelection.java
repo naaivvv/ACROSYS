@@ -11,14 +11,14 @@ import com.acrosys.models.User;
  *
  * @author Batch 4
  */
-public class ScannerSelection extends javax.swing.JFrame {
+public class AddSelection extends javax.swing.JFrame {
     private User user;
     private Event event;
     
     /**
      * Creates new form ManageSelection
      */
-    public ScannerSelection(User user, Event evt) {
+    public AddSelection(User user, Event evt) {
         initComponents();
         
         this.user = user;
@@ -38,7 +38,6 @@ public class ScannerSelection extends javax.swing.JFrame {
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        back_button3 = new javax.swing.JButton();
         back_button4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -55,7 +54,7 @@ public class ScannerSelection extends javax.swing.JFrame {
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(606, 438));
 
         jButton1.setBackground(new java.awt.Color(12, 146, 148));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/check out smal.png"))); // NOI18N
+        jButton1.setText("Add Attendees");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,17 +63,13 @@ public class ScannerSelection extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(12, 146, 148));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/check in smal.png"))); // NOI18N
+        jButton2.setText("Generate QR");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        back_button3.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
-        back_button3.setForeground(new java.awt.Color(12, 146, 148));
-        back_button3.setText("< Back");
 
         back_button4.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
         back_button4.setForeground(new java.awt.Color(12, 146, 148));
@@ -87,7 +82,6 @@ public class ScannerSelection extends javax.swing.JFrame {
 
         jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(back_button3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(back_button4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
@@ -105,11 +99,6 @@ public class ScannerSelection extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(back_button4)))
                 .addContainerGap(284, Short.MAX_VALUE))
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(back_button3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,14 +106,9 @@ public class ScannerSelection extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addComponent(back_button4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 136, Short.MAX_VALUE))
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(back_button3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(48, 48, 48)
+                .addComponent(back_button4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 134, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -187,12 +171,12 @@ public class ScannerSelection extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ScannerTab(user, event).setVisible(true);
+        new GenerateQR(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new CheckoutTab(user, event).setVisible(true);
+        new AddAttendees(user, event).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -218,27 +202,28 @@ public class ScannerSelection extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ScannerSelection(null, null).setVisible(true);
+                new AddSelection(null, null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back_button3;
     private javax.swing.JButton back_button4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
