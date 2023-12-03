@@ -325,8 +325,6 @@ public class AttendeeList extends javax.swing.JFrame {
             tbl_AttendeeList.getColumnModel().getColumn(4).setResizable(false);
         }
 
-        lblCtrlnShow.setText("jLabel9");
-
         back_button3.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
         back_button3.setForeground(new java.awt.Color(12, 146, 148));
         back_button3.setText("< Back");

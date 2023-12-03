@@ -388,9 +388,6 @@
         <Component class="javax.swing.JLabel" name="labelImage">
         </Component>
         <Component class="javax.swing.JLabel" name="lblCtrlnShow">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel9"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="back_button3">
           <Properties>
