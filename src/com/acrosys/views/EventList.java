@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class EventList extends javax.swing.JFrame {
     private boolean isEdit = false;
     private String eventCode = null;
+    private int numberOfEvents = 0;
 
     /**
      * Creates new form ManageForm
@@ -374,7 +375,11 @@ public class EventList extends javax.swing.JFrame {
         
         EventController eventController = new EventController();
         if(!isEdit){
-            eventController.saveEvent(event);
+            if (eventController.verifyCode(event_code)){
+                eventController.saveEvent(event);
+            } else {
+                JOptionPane.showMessageDialog(null,"Error. Duplicate event code.","Alert", JOptionPane.ERROR_MESSAGE);                            
+            }
         }else{
             eventController.updateEvent(event);
         }
@@ -535,9 +540,16 @@ public class EventList extends javax.swing.JFrame {
             String event_name = event.getName();
             String event_code = event.getCode();
             String description =  event.getDescription();
-            String dateTime =  event.getDate();
+            LocalDateTime dateTime =  event.getDate();
             
             model.addRow(new Object[]{event_name, event_code, description, dateTime});
+        }
+        
+        numberOfEvents = list.size();
+        if (numberOfEvents >= 10) {
+            btn_Manage_Save.setEnabled(false);
+        } else{
+            btn_Manage_Save.setEnabled(true);
         }
     }
 
@@ -545,7 +557,7 @@ public class EventList extends javax.swing.JFrame {
         txt_Manage_EN.setText("");
         txt_Manage_EC.setText("");
         txt_Manage_DS.setText("");
-        dtDate.setDate("");
+        dtDate.setDate(null);
         dtTime.setText("");
                 
         btn_Manage_Save.setText("SAVE");

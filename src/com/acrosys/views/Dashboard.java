@@ -2519,7 +2519,7 @@ public class Dashboard extends javax.swing.JFrame {
     }
     
     private void btn_scanActionPerformed(Event event) {
-        new ScannerSelection(event.getName()).setVisible(true);
+        new ScannerSelection(event).setVisible(true);
         this.setVisible(false);
     }
     

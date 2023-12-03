@@ -4,20 +4,22 @@
  */
 package com.acrosys.views;
 
+import com.acrosys.models.Event;
+
 /**
  *
  * @author Batch 4
  */
 public class ScannerSelection extends javax.swing.JFrame {
-    private String eventName;
+    private Event event;
     
     /**
      * Creates new form ManageSelection
      */
-    public ScannerSelection(String evtN) {
+    public ScannerSelection(Event evt) {
         initComponents();
         
-        eventName = evtN;
+        this.event = evt;
     }
 
     /**
@@ -73,12 +75,12 @@ public class ScannerSelection extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ScannerTab(eventName).setVisible(true);
+        new ScannerTab(event).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new CheckoutTab(eventName).setVisible(true);
+        new CheckoutTab(event).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

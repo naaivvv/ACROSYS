@@ -6,6 +6,7 @@ package com.acrosys.views;
 
 import com.acrosys.controllers.AttendeeController;
 import com.acrosys.models.Attendee;
+import com.acrosys.models.Event;
 import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,15 +17,18 @@ import javax.swing.JOptionPane;
  * @author hansa
  */
 public class CheckoutTab extends javax.swing.JFrame {
-
+    private Event event;
+    
     /**
      * Creates new form ScannerTab
      */
-    public CheckoutTab(String eventName) {
+    public CheckoutTab(Event evt) {
         initComponents();
         
         txt_Code.requestFocus();
-        lbl_EvtName.setText(eventName);
+        lbl_EvtName.setText(evt.getName());
+        
+        this.event = evt;
         Reset();
     }
 
@@ -298,24 +302,34 @@ public class CheckoutTab extends javax.swing.JFrame {
             LocalDateTime date = LocalDateTime.now();
             String currDate = DateTimeFormatter.ofPattern("hh:mm a - yyyy/MM/dd").format(date);
             
-            AttendeeController atCon = new AttendeeController();
-            Attendee attendee = atCon.getAttendee(ctrlNo);
-            
-            if(!attendee.isChecked_in()){
-                JOptionPane.showMessageDialog(null,"Attendee already checked out.","Alert", JOptionPane.INFORMATION_MESSAGE);
-                
-                txt_Code.setText("");
-                return;
+            try {
+                AttendeeController atCon = new AttendeeController();
+                Attendee attendee = atCon.getAttendee(ctrlNo);
+
+                if (attendee.getEvent_code() == event.getCode()){
+
+                    if(!attendee.isChecked_in()){
+                        JOptionPane.showMessageDialog(null,"Attendee already checked in.","Alert", JOptionPane.ERROR_MESSAGE);
+
+                        txt_Code.setText("");
+                        return;
+                    }
+
+                    lbl_AttendeeName.setText(attendee.getClient_name());
+                    lbl_AttendeeAge.setText(String.valueOf(attendee.getClient_age()));
+                    lbl_AttendeeGender.setText(attendee.getClient_gender());
+                    lbl_Time.setText(currDate);
+
+                    attendee.setChecked_in(false);
+                    attendee.setCheckOut_time(date);
+                    atCon.updateAttendee(attendee);
+                } else {
+                    JOptionPane.showMessageDialog(null,"Attendee in different event.","Alert", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null,"Attendee not found.","Alert", JOptionPane.ERROR_MESSAGE);
             }
-            
-            lbl_AttendeeName.setText(attendee.getClient_name());
-            lbl_AttendeeAge.setText(String.valueOf(attendee.getClient_age()));
-            lbl_AttendeeGender.setText(attendee.getClient_gender());
-            lbl_Time.setText(currDate);
-            
-            attendee.setChecked_in(false);
-            attendee.setCheckOut_time(date);
-            atCon.updateAttendee(attendee);
             
             txt_Code.setText("");
         }
