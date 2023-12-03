@@ -12,20 +12,25 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.font.TextAttribute;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
+import java.io.File;
 import java.util.Map;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author kryle
  */
 public class GenerateQR extends javax.swing.JFrame {
-
+File f = null;
+String path = null;
+private ImageIcon format = null;
     /**
      * Creates new form GenerateQR
      */
@@ -153,44 +158,36 @@ public class GenerateQR extends javax.swing.JFrame {
         Control.setText("Control Number:");
 
         ControlNum.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        ControlNum.setForeground(new java.awt.Color(251, 133, 0));
 
         jLabel2.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(12, 146, 148));
         jLabel2.setText("Attendee Name:");
 
         AttendeeName.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        AttendeeName.setForeground(new java.awt.Color(251, 133, 0));
 
         jLabel5.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(12, 146, 148));
         jLabel5.setText("Event Attended:");
 
         EventAttended.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        EventAttended.setForeground(new java.awt.Color(251, 133, 0));
 
         Control1.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         Control1.setForeground(new java.awt.Color(12, 146, 148));
         Control1.setText("Event Code:");
 
         EventCode.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        EventCode.setForeground(new java.awt.Color(251, 133, 0));
 
         jLabel4.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(12, 146, 148));
         jLabel4.setText("Age:");
 
         Age.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        Age.setForeground(new java.awt.Color(251, 133, 0));
 
         jLabel6.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(12, 146, 148));
         jLabel6.setText("Gender:");
 
         Gender.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
-        Gender.setForeground(new java.awt.Color(251, 133, 0));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\soyvi\\Documents\\GitHub\\ACROSYS\\collaterals\\ORANGE.png")); // NOI18N
 
         jLayeredPane1.setLayer(jLayeredPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(Control, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -387,6 +384,11 @@ if (ok) {
             EventController eventController = new EventController();
             Event event = eventController.getEvent(attendee.getEvent_code());
             EventAttended.setText(event.getName());
+            
+                path = "src\\com\\acrosys\\qrcodes\\" + ctrlnosearch + ".PNG";
+                ImageIcon ii = new ImageIcon(path);
+                Image img = ii.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+                labelImage.setIcon(new ImageIcon(img));
         }
     }//GEN-LAST:event_controlNoSearchKeyPressed
 
