@@ -32,6 +32,7 @@ public class Dashboard extends javax.swing.JFrame {
         initiateEvents();
         setManageButton(user);
         this.user = user;
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
