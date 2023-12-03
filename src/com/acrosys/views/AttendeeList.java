@@ -9,7 +9,14 @@ import com.acrosys.controllers.DatabaseConnection;
 import com.acrosys.controllers.EventController;
 import com.acrosys.models.Attendee;
 import com.acrosys.models.User;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,6 +34,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
@@ -116,6 +124,7 @@ public class AttendeeList extends javax.swing.JFrame {
         labelImage = new javax.swing.JLabel();
         lblCtrlnShow = new javax.swing.JLabel();
         back_button3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -334,6 +343,13 @@ public class AttendeeList extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("PRINT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -378,7 +394,10 @@ public class AttendeeList extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(lblCtrlnShow))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addGap(45, 45, 45))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -432,6 +451,8 @@ public class AttendeeList extends javax.swing.JFrame {
                         .addComponent(back_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCtrlnShow)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -652,6 +673,57 @@ public class AttendeeList extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_back_button3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PrinterJob job = PrinterJob.getPrinterJob();
+    job.setJobName("Attendees");
+
+    job.setPrintable(new Printable() {
+        public int print(Graphics pg, PageFormat pf, int pageNum) {
+            pf.setOrientation(PageFormat.LANDSCAPE);
+            if (pageNum > 0) {
+                return Printable.NO_SUCH_PAGE;
+            }
+
+            Graphics2D g2 = (Graphics2D) pg;
+            g2.translate(pf.getImageableX() + 25, pf.getImageableY() + 25); // Add left and top margins
+
+            // Set custom width and height for printing (adjust these values as needed)
+            double panelWidth = 1000; // Set your desired width (excluding margins)
+            double panelHeight = 1100; // Set your desired height (excluding margins)
+
+            double scaleX = pf.getImageableWidth() / panelWidth;
+            double scaleY = pf.getImageableHeight() / panelHeight;
+
+            g2.scale(scaleX, scaleY);
+
+            // Draw column names
+            JTableHeader tableHeader = tbl_AttendeeList.getTableHeader();
+            int headerHeight = tableHeader.getHeight();
+
+            // Ensure the entire table header is visible for printing
+            g2.translate(0, -headerHeight);
+
+            // Draw table header
+            tableHeader.paint(g2);
+
+            // Draw table content
+            g2.translate(0, headerHeight);
+            tbl_AttendeeList.print(g2);
+
+            return Printable.PAGE_EXISTS;
+        }
+    });
+
+    // Show print dialog and execute print job if the user chooses to print
+    if (job.printDialog()) {
+        try {
+            job.print();
+        } catch (PrinterException ex) {
+            ex.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
     
     /**
@@ -697,6 +769,7 @@ public class AttendeeList extends javax.swing.JFrame {
     private javax.swing.JButton btn_Manage_delete;
     private javax.swing.JComboBox<String> cmb_Manage_ClientGender;
     private javax.swing.JComboBox<String> cmb_Manage_SelectEvent;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
