@@ -7,6 +7,7 @@ package com.acrosys.views;
 import com.acrosys.controllers.AttendeeController;
 import com.acrosys.models.Attendee;
 import com.acrosys.models.Event;
+import com.acrosys.models.User;
 import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,17 +18,19 @@ import javax.swing.JOptionPane;
  * @author hansa
  */
 public class CheckoutTab extends javax.swing.JFrame {
+    private User user;
     private Event event;
     
     /**
      * Creates new form ScannerTab
      */
-    public CheckoutTab(Event evt) {
+    public CheckoutTab(User user, Event evt) {
         initComponents();
         
         txt_Code.requestFocus();
         lbl_EvtName.setText(evt.getName());
         
+        this.user = user;
         this.event = evt;
         Reset();
     }
@@ -41,6 +44,7 @@ public class CheckoutTab extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        back_button = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         lbl_EvtName = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
@@ -66,6 +70,14 @@ public class CheckoutTab extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        back_button.setText("< Back");
+        back_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_buttonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 850, 110, 70));
 
         jLayeredPane2.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -343,6 +355,11 @@ public class CheckoutTab extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_CodeKeyPressed
 
+    private void back_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonActionPerformed
+        new Dashboard(user).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_back_buttonActionPerformed
+
     private void Reset(){
         lbl_AttendeeName.setText("");
         lbl_AttendeeAge.setText("");
@@ -381,12 +398,13 @@ public class CheckoutTab extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckoutTab(null).setVisible(true);
+                new CheckoutTab(null, null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back_button;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;

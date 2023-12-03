@@ -8,6 +8,7 @@ import com.acrosys.controllers.AttendeeController;
 import com.acrosys.controllers.EventController;
 import com.acrosys.models.Attendee;
 import com.acrosys.models.Event;
+import com.acrosys.models.User;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -28,15 +29,19 @@ import javax.swing.ImageIcon;
  * @author kryle
  */
 public class GenerateQR extends javax.swing.JFrame {
-File f = null;
-String path = null;
-private ImageIcon format = null;
+    private User user;
+    
+    File f = null;
+    String path = null;
+    private ImageIcon format = null;
     /**
      * Creates new form GenerateQR
      */
-    public GenerateQR() {
+    public GenerateQR(User user) {
         initComponents();
         lblSearch.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        this.user = user;
     }
 
     /**
@@ -49,6 +54,7 @@ private ImageIcon format = null;
     private void initComponents() {
 
         panel1 = new java.awt.Panel();
+        back_button3 = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         lblSearch = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -76,6 +82,13 @@ private ImageIcon format = null;
         panel1.setBackground(new java.awt.Color(251, 133, 0));
         panel1.setName(""); // NOI18N
         panel1.setPreferredSize(new java.awt.Dimension(810, 530));
+
+        back_button3.setText("< Back");
+        back_button3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_button3ActionPerformed(evt);
+            }
+        });
 
         jLayeredPane2.setBackground(new java.awt.Color(12, 146, 148));
         jLayeredPane2.setOpaque(true);
@@ -293,6 +306,10 @@ private ImageIcon format = null;
                 .addGap(15, 15, 15)
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel1Layout.createSequentialGroup()
+                    .addComponent(back_button3)
+                    .addGap(0, 885, Short.MAX_VALUE)))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,6 +320,10 @@ private ImageIcon format = null;
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Print, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                    .addGap(0, 612, Short.MAX_VALUE)
+                    .addComponent(back_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -392,6 +413,11 @@ if (ok) {
         }
     }//GEN-LAST:event_controlNoSearchKeyPressed
 
+    private void back_button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_button3ActionPerformed
+        new Dashboard(user).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_back_button3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -422,7 +448,7 @@ if (ok) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GenerateQR().setVisible(true);
+                new GenerateQR(null).setVisible(true);
             }
         });
     }
@@ -437,6 +463,7 @@ if (ok) {
     private javax.swing.JLabel EventCode;
     private javax.swing.JLabel Gender;
     private javax.swing.JButton Print;
+    private javax.swing.JButton back_button3;
     private javax.swing.JTextField controlNoSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

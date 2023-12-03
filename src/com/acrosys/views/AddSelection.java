@@ -11,14 +11,14 @@ import com.acrosys.models.User;
  *
  * @author Batch 4
  */
-public class ScannerSelection extends javax.swing.JFrame {
+public class AddSelection extends javax.swing.JFrame {
     private User user;
     private Event event;
     
     /**
      * Creates new form ManageSelection
      */
-    public ScannerSelection(User user, Event evt) {
+    public AddSelection(User user, Event evt) {
         initComponents();
         
         this.user = user;
@@ -42,9 +42,7 @@ public class ScannerSelection extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(606, 438));
         setMinimumSize(new java.awt.Dimension(606, 438));
-        setPreferredSize(new java.awt.Dimension(606, 438));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(12, 146, 148));
@@ -55,7 +53,7 @@ public class ScannerSelection extends javax.swing.JFrame {
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(606, 438));
 
         jButton1.setBackground(new java.awt.Color(12, 146, 148));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/check out smal.png"))); // NOI18N
+        jButton1.setText("Add Attendees");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +62,7 @@ public class ScannerSelection extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(12, 146, 148));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/check in smal.png"))); // NOI18N
+        jButton2.setText("Generate QR");
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,12 +152,12 @@ public class ScannerSelection extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new ScannerTab(user, event).setVisible(true);
+        new GenerateQR(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new CheckoutTab(user, event).setVisible(true);
+        new AddAttendees(user, event).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -180,21 +178,23 @@ public class ScannerSelection extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ScannerSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddSelection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ScannerSelection(null, null).setVisible(true);
+                new AddSelection(null, null).setVisible(true);
             }
         });
     }

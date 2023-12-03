@@ -4,17 +4,22 @@
  */
 package com.acrosys.views;
 
+import com.acrosys.models.User;
+
 /**
  *
  * @author Batch 4
  */
 public class ManageSelection extends javax.swing.JFrame {
+    private User user;
 
     /**
      * Creates new form ManageSelection
      */
-    public ManageSelection() {
+    public ManageSelection(User user) {
         initComponents();
+        
+        this.user = user;
     }
 
     /**
@@ -100,12 +105,12 @@ public class ManageSelection extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new EventList().setVisible(true);
+        new EventList(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new AttendeeList().setVisible(true);
+        new AttendeeList(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -139,7 +144,7 @@ public class ManageSelection extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageSelection().setVisible(true);
+                new ManageSelection(null).setVisible(true);
             }
         });
     }
