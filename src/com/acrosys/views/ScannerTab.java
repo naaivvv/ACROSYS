@@ -302,23 +302,17 @@ public class ScannerTab extends javax.swing.JFrame {
             LocalDateTime date = LocalDateTime.now();
             String currDate = DateTimeFormatter.ofPattern("hh:mm a - yyyy/MM/dd").format(date);
             
+            try {
                 AttendeeController atCon = new AttendeeController();
                 Attendee attendee = atCon.getAttendee(ctrlNo);
 
-                if (attendee == null){
-                    JOptionPane.showMessageDialog(null,"Attendee not found.","Alert", JOptionPane.ERROR_MESSAGE);
-                    
-                    txt_Code.setText("");
-                    return;
-                }
-                
                 if (!attendee.getEvent_code().equals(event.getCode())){
                     JOptionPane.showMessageDialog(null,"Attendee in different event.","Alert", JOptionPane.ERROR_MESSAGE);
-                    
+
                     txt_Code.setText("");
                     return;
                 }
-                
+
                 if(attendee.isChecked_in()){
                     JOptionPane.showMessageDialog(null,"Attendee already checked in.","Alert", JOptionPane.ERROR_MESSAGE);
 
@@ -334,8 +328,11 @@ public class ScannerTab extends javax.swing.JFrame {
                 attendee.setChecked_in(true);
                 attendee.setCheckIn_time(date);
                 atCon.updateAttendee(attendee);
-
-
+                
+            } catch (NullPointerException e) {
+                JOptionPane.showMessageDialog(null,"Attendee not found.","Alert", JOptionPane.ERROR_MESSAGE);
+            }
+            
             txt_Code.setText("");   
         }
     }//GEN-LAST:event_txt_CodeKeyPressed

@@ -302,30 +302,33 @@ public class CheckoutTab extends javax.swing.JFrame {
             LocalDateTime date = LocalDateTime.now();
             String currDate = DateTimeFormatter.ofPattern("hh:mm a - yyyy/MM/dd").format(date);
             
+            
             try {
                 AttendeeController atCon = new AttendeeController();
                 Attendee attendee = atCon.getAttendee(ctrlNo);
-
-                if (attendee.getEvent_code() == event.getCode()){
-
-                    if(!attendee.isChecked_in()){
-                        JOptionPane.showMessageDialog(null,"Attendee already checked in.","Alert", JOptionPane.ERROR_MESSAGE);
-
-                        txt_Code.setText("");
-                        return;
-                    }
-
-                    lbl_AttendeeName.setText(attendee.getClient_name());
-                    lbl_AttendeeAge.setText(String.valueOf(attendee.getClient_age()));
-                    lbl_AttendeeGender.setText(attendee.getClient_gender());
-                    lbl_Time.setText(currDate);
-
-                    attendee.setChecked_in(false);
-                    attendee.setCheckOut_time(date);
-                    atCon.updateAttendee(attendee);
-                } else {
+                
+                if (!attendee.getEvent_code().equals(event.getCode())){
                     JOptionPane.showMessageDialog(null,"Attendee in different event.","Alert", JOptionPane.ERROR_MESSAGE);
+                    
+                    txt_Code.setText("");
+                    return;
                 }
+                
+                if(!attendee.isChecked_in()){
+                    JOptionPane.showMessageDialog(null,"Attendee already checked in.","Alert", JOptionPane.ERROR_MESSAGE);
+
+                    txt_Code.setText("");
+                    return;
+                }
+
+                lbl_AttendeeName.setText(attendee.getClient_name());
+                lbl_AttendeeAge.setText(String.valueOf(attendee.getClient_age()));
+                lbl_AttendeeGender.setText(attendee.getClient_gender());
+                lbl_Time.setText(currDate);
+
+                attendee.setChecked_in(false);
+                attendee.setCheckOut_time(date);
+                atCon.updateAttendee(attendee);
 
             } catch (NullPointerException e) {
                 JOptionPane.showMessageDialog(null,"Attendee not found.","Alert", JOptionPane.ERROR_MESSAGE);
