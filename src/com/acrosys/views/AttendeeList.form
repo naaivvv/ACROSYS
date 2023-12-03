@@ -91,7 +91,6 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btn_Manage_Reset" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="back_button3" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -104,6 +103,11 @@
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="back_button3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -166,9 +170,9 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblCtrlnShow" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="back_button3" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="back_button3" min="-2" pref="70" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -390,6 +394,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="back_button3">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Heavitas" size="12" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="94" green="92" red="c" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="&lt; Back"/>
           </Properties>
           <Events>

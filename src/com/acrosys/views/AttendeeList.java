@@ -327,6 +327,8 @@ public class AttendeeList extends javax.swing.JFrame {
 
         lblCtrlnShow.setText("jLabel9");
 
+        back_button3.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
+        back_button3.setForeground(new java.awt.Color(12, 146, 148));
         back_button3.setText("< Back");
         back_button3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,8 +371,7 @@ public class AttendeeList extends javax.swing.JFrame {
                                 .addGap(43, 43, 43)
                                 .addComponent(btn_Manage_Save)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_Manage_Reset))
-                            .addComponent(back_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btn_Manage_Reset)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -378,6 +379,10 @@ public class AttendeeList extends javax.swing.JFrame {
                                 .addComponent(lblCtrlnShow))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(45, 45, 45))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(back_button3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(36, 36, 36)
@@ -428,9 +433,9 @@ public class AttendeeList extends javax.swing.JFrame {
                             .addComponent(btn_Manage_Save))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCtrlnShow)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(back_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(back_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(466, 466, 466)
@@ -689,9 +694,6 @@ public class AttendeeList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton back_button;
-    private javax.swing.JButton back_button1;
-    private javax.swing.JButton back_button2;
     private javax.swing.JButton back_button3;
     private javax.swing.JButton btn_Manage_Reset;
     private javax.swing.JButton btn_Manage_Save;

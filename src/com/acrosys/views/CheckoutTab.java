@@ -44,7 +44,6 @@ public class CheckoutTab extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        back_button = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         lbl_EvtName = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
@@ -63,6 +62,7 @@ public class CheckoutTab extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txt_Code = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        back_button = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -70,14 +70,6 @@ public class CheckoutTab extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        back_button.setText("< Back");
-        back_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                back_buttonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 850, 110, 70));
 
         jLayeredPane2.setPreferredSize(new java.awt.Dimension(1920, 1080));
         jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -252,6 +244,16 @@ public class CheckoutTab extends javax.swing.JFrame {
             }
         });
         jLayeredPane2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 840, 114, 42));
+
+        back_button.setFont(new java.awt.Font("Heavitas", 0, 12)); // NOI18N
+        back_button.setForeground(new java.awt.Color(12, 146, 148));
+        back_button.setText("< Back");
+        back_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_buttonActionPerformed(evt);
+            }
+        });
+        jLayeredPane2.add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1750, 0, 90, 60));
 
         getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 1095));
 
