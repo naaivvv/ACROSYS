@@ -19,6 +19,6 @@ public interface AttendeeInterface {
     public List<Attendee> searchAttendee(String searchkey, String searchString);
     public List<Attendee> attendeeList();
     public Attendee getAttendee(String controlno);
-    public Attendee getControlno(String client_name);
+    public Attendee getControlno(String client_name, String evt_code);
     
 }

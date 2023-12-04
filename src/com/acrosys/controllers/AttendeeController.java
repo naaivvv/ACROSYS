@@ -182,12 +182,13 @@ public class AttendeeController implements AttendeeInterface{
     }
 
     @Override
-    public Attendee getControlno(String client_name) {
+    public Attendee getControlno(String client_name, String evt_code) {
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_attendees WHERE client_name = ? ";                  
+            String sql = "SELECT * FROM tbl_attendees WHERE client_name = ? AND event_code = ?";                  
             PreparedStatement statement = conn.prepareStatement(sql);                  
-            statement.setString(1, client_name);                 
+            statement.setString(1, client_name);                           
+            statement.setString(2, evt_code);                 
             ResultSet rs = statement.executeQuery();                    
             
             while (rs.next()) {                      

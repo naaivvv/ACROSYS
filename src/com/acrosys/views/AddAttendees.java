@@ -245,7 +245,7 @@ public class AddAttendees extends javax.swing.JFrame {
         }
         Reset();
 
-        Attendee ctrlno = attendController.getControlno(client_name);
+        Attendee ctrlno = attendController.getControlno(client_name, event_code);
         lblCtrlnShow.setText(ctrlno.getControlno());
 
         Connection conn = DatabaseConnection.getConnection();

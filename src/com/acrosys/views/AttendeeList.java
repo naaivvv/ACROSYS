@@ -532,7 +532,7 @@ public class AttendeeList extends javax.swing.JFrame {
             LoadAttendees();
             Reset();
             LoadAttendees();
-            Attendee ctrlno = attendController.getControlno(client_name);
+            Attendee ctrlno = attendController.getControlno(client_name, event_code);
             lblCtrlnShow.setText(ctrlno.getControlno());
 
             Connection conn = DatabaseConnection.getConnection();
