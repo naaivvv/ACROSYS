@@ -252,7 +252,7 @@ public class ScannerTab extends javax.swing.JFrame {
                 back_buttonActionPerformed(evt);
             }
         });
-        jLayeredPane2.add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1720, 0, 90, 70));
+        jLayeredPane2.add(back_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(1830, 0, 90, 40));
 
         getContentPane().add(jLayeredPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, 1095));
 

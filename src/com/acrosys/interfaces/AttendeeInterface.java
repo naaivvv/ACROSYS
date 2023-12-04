@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface AttendeeInterface {
     public void saveAttendee(Attendee attendee);
+    public void updateAttendeeDetails(Attendee attendee);
     public void updateAttendee(Attendee attendee);
     public void deleteAttendee(String controlno);
     public List<Attendee> searchAttendee(String searchkey, String searchString);

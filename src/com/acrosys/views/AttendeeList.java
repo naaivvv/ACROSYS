@@ -69,6 +69,7 @@ public class AttendeeList extends javax.swing.JFrame {
         updateCMB();
         CreateColumns();
         labelImage.setFont(new java.awt.Font("Lucida Grande", 1, 0));
+        labelImage.setVisible(false);
 
         this.user = user;
     }
@@ -138,6 +139,8 @@ public class AttendeeList extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Control Number:");
+
+        txt_Manage_CN.setEnabled(false);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -452,11 +455,12 @@ public class AttendeeList extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(47, 47, 47)
-                        .addComponent(back_button3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(back_button3, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(451, 451, 451)
-                        .addComponent(jButton1)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(251, 133, 0));
@@ -521,9 +525,9 @@ public class AttendeeList extends javax.swing.JFrame {
 
             AttendeeController attendController = new AttendeeController();
             if(!isEdit){
-            attendController.saveAttendee(attendee);
+                attendController.saveAttendee(attendee);
             }else{
-                attendController.updateAttendee(attendee);
+                attendController.updateAttendeeDetails(attendee);
             }
             LoadAttendees();
             Reset();
@@ -635,7 +639,7 @@ public class AttendeeList extends javax.swing.JFrame {
             btn_Manage_delete.setEnabled(false);
             txt_Manage_CN.setEditable(false);
             txt_Manage_CN.requestFocus();
-            isEdit = false;
+            isEdit = true;
             
         }
         else{

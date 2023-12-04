@@ -185,7 +185,7 @@ public class AttendeeController implements AttendeeInterface{
     public Attendee getControlno(String client_name) {
         try {                  
             Connection conn = DatabaseConnection.getConnection();                  
-            String sql = "SELECT * FROM tbl_attendees WHERE client_name = ?";                  
+            String sql = "SELECT * FROM tbl_attendees WHERE client_name = ? ";                  
             PreparedStatement statement = conn.prepareStatement(sql);                  
             statement.setString(1, client_name);                 
             ResultSet rs = statement.executeQuery();                    
@@ -201,6 +201,28 @@ public class AttendeeController implements AttendeeInterface{
             System.out.println("Logs: " + e.getMessage());          
         }              
         return null;
+    }
+
+    @Override
+    public void updateAttendeeDetails(Attendee attendee) {
+        try{
+        Connection conn = DatabaseConnection.getConnection();
+        
+        String sql = "UPDATE tbl_attendees SET client_name = ?, client_age = ?, client_gender = ? WHERE control_number = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+
+        statement.setString(1, attendee.getClient_name());
+        statement.setInt(2, attendee.getClient_age());
+        statement.setString(3, attendee.getClient_gender());
+        statement.setString(4, attendee.getControlno());
+
+        statement.executeUpdate();
+        JOptionPane.showMessageDialog(null, "Attendee record was successfully updated.", "Update", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException e){
+            JOptionPane.showMessageDialog(null, "Unable to update attendee record. Please see logs", "Update  Error", JOptionPane.ERROR_MESSAGE);
+            
+            System.out.println("Logs: " + e.getMessage());
+        }
     }
     
 }
