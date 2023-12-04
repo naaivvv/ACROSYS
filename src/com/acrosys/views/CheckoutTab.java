@@ -346,7 +346,7 @@ public class CheckoutTab extends javax.swing.JFrame {
                 lbl_AttendeeGender.setText(attendee.getClient_gender());
                 lbl_Time.setText(currDate);
 
-                attendee.setChecked_in(false);
+                attendee.setChecked_in(true);
                 attendee.setCheckOut_time(date);
                 atCon.updateAttendee(attendee);
 

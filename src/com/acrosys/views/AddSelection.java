@@ -54,7 +54,7 @@ public class AddSelection extends javax.swing.JFrame {
         jLayeredPane1.setMaximumSize(new java.awt.Dimension(606, 438));
 
         jButton1.setBackground(new java.awt.Color(12, 146, 148));
-        jButton1.setText("Add Attendees");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/add attendee small.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,7 +63,7 @@ public class AddSelection extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(12, 146, 148));
-        jButton2.setText("Generate QR");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/acrosys/collaterals/qr small.png"))); // NOI18N
         jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,22 +91,23 @@ public class AddSelection extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(50, 50, 50)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
+                        .addGap(73, 73, 73)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(back_button4)))
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(20, 20, 20)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addGap(28, 28, 28)
                 .addComponent(back_button4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 134, Short.MAX_VALUE))
         );

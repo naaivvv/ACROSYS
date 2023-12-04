@@ -31,6 +31,12 @@ public class Dashboard extends javax.swing.JFrame {
         
         initiateEvents();
         setManageButton(user);
+        
+        if (user.getPermission().equalsIgnoreCase("admin")) {
+            btn_events.setEnabled(true);
+        } else {
+            btn_events.setEnabled(false);
+        }
         this.user = user;
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -220,6 +226,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel91 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        btn_events = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -2443,6 +2450,17 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        btn_events.setBackground(new java.awt.Color(251, 133, 0));
+        btn_events.setFont(new java.awt.Font("Heavitas", 0, 14)); // NOI18N
+        btn_events.setForeground(new java.awt.Color(255, 255, 255));
+        btn_events.setText("Events");
+        btn_events.setBorder(null);
+        btn_events.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eventsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -2456,6 +2474,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_events)
+                        .addGap(51, 51, 51)
                         .addComponent(jButton4)
                         .addGap(51, 51, 51)
                         .addComponent(jButton5)
@@ -2468,6 +2488,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_events, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
@@ -2510,6 +2531,11 @@ public class Dashboard extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btn_eventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eventsActionPerformed
+        new EventList(user).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btn_eventsActionPerformed
 
     private void btn_manageActionPerformed(java.awt.event.ActionEvent evt) { 
         new ManageSelection(user).setVisible(true);
@@ -2698,6 +2724,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel EVENT1;
+    private javax.swing.JButton btn_events;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
